@@ -1,6 +1,8 @@
-import { Paper, Typography, makeStyles, Divider } from '@material-ui/core';
+import { Paper, Typography, makeStyles, Divider, Fab } from '@material-ui/core';
 import { useState } from 'react';
+import AddIcon from '@material-ui/icons/Add';
 import Note from './Note';
+import { sampleNotes } from '../sampleData';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -10,24 +12,20 @@ const useStyles = makeStyles((theme) => ({
   title: {
     textAlign: 'center',
   },
+  footerContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    flexDirection: 'column',
+  },
 }));
 
 const NotesCard = () => {
   const classes = useStyles();
-  const [notes, setNotes] = useState([
-    {
-      archived: false,
-      date: 'a date',
-      title: 'My Note',
-      content: 'Here is my note. Its such a great note',
-    },
-    {
-      archived: false,
-      title: 'Nother Note',
-      date: 'a date',
-      content: 'Here is another note. It is so much better than the last one',
-    },
-  ]);
+  const [notes, setNotes] = useState([...sampleNotes]);
+
+  const handleOpen = () => {
+    console.log('im open');
+  };
 
   return (
     <Paper className={classes.paper}>
@@ -43,6 +41,11 @@ const NotesCard = () => {
           content={note.content}
         />
       ))}
+      <div className={classes.footerContainer}>
+        <Fab size="small" color="primary" aria-label="add" onClick={handleOpen}>
+          <AddIcon />
+        </Fab>
+      </div>
     </Paper>
   );
 };

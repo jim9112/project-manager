@@ -16,3 +16,18 @@ export const sampleTasks = [
     task: 'Move hard coded state to a "sample data" file',
   },
 ];
+
+export const sampleNotes = [
+  {
+    archived: false,
+    date: 'a date',
+    title: 'My Note',
+    content: 'Here is my note. Its such a great note',
+  },
+  {
+    archived: false,
+    title: 'Another Note',
+    date: 'a date',
+    content: 'Here is another note. It is so much better than the last one',
+  },
+];
