@@ -9,9 +9,15 @@ import {
   ListItemText,
   Checkbox,
   Fab,
+  Dialog,
+  DialogTitle,
+  TextField,
+  DialogActions,
+  Button,
 } from '@material-ui/core';
 import { useState } from 'react';
 import AddIcon from '@material-ui/icons/Add';
+import { sampleTasks } from '../sampleData';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -29,24 +35,16 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     flexDirection: 'column',
   },
+  newTextForm: {
+    padding: '1rem',
+  },
 }));
 
 const SprintCard = () => {
   const classes = useStyles();
-  const [todoList, setTodoList] = useState([
-    {
-      checked: false,
-      task: 'First Task',
-    },
-    {
-      checked: true,
-      task: 'Second Task',
-    },
-    {
-      checked: false,
-      task: 'Third Task',
-    },
-  ]);
+  const [open, setOpen] = useState(false);
+  const [newTask, setNewTask] = useState('');
+  const [todoList, setTodoList] = useState([...sampleTasks]);
 
   // line through to do items when checked
   const onCheck = (task, i) => {
@@ -60,6 +58,19 @@ const SprintCard = () => {
   };
 
   // add form dialog for new task
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const updateList = todoList;
+    updateList.push({ checked: false, task: newTask });
+    setTodoList([...updateList]);
+    handleClose();
+  };
 
   return (
     <Paper className={classes.paper}>
@@ -89,10 +100,38 @@ const SprintCard = () => {
         })}
       </List>
       <div className={classes.footerContainer}>
-        <Fab size="small" color="primary" aria-label="add">
+        <Fab size="small" color="primary" aria-label="add" onClick={handleOpen}>
           <AddIcon />
         </Fab>
       </div>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="form-dialog-title">
+        <DialogTitle className={classes.title} id="form-dialog-title">
+          Add Task
+        </DialogTitle>
+        <form className={classes.newTextForm} onSubmit={handleSubmit}>
+          <TextField
+            autoFocus
+            required={true}
+            margin="dense"
+            id="name"
+            label="New Task"
+            type="text"
+            fullWidth
+            onChange={(e) => setNewTask(e.currentTarget.value)}
+          />
+          <DialogActions>
+            <Button onClick={handleClose} color="primary">
+              Cancel
+            </Button>
+            <Button type="submit" color="primary">
+              Add Task
+            </Button>
+          </DialogActions>
+        </form>
+      </Dialog>
     </Paper>
   );
 };
