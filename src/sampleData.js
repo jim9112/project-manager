@@ -4,7 +4,7 @@ export const sampleTasks = [
     task: 'Add delete button to tasks',
   },
   {
-    checked: false,
+    checked: true,
     task: 'Crossed out tasks should move to the bottom of list',
   },
   {

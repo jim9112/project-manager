@@ -51,8 +51,10 @@ const SprintCard = () => {
     const updateList = todoList;
     if (task.checked === true) {
       updateList[i].checked = false;
+      updateList.unshift(updateList.splice(i, 1)[0]);
     } else {
       updateList[i].checked = true;
+      updateList.push(updateList.splice(i, 1)[0]);
     }
     setTodoList([...updateList]);
   };
