@@ -69,7 +69,7 @@ const SprintCard = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const updateList = todoList;
-    updateList.push({ checked: false, task: newTask });
+    updateList.unshift({ checked: false, task: newTask });
     setTodoList([...updateList]);
     handleClose();
   };

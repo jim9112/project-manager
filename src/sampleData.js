@@ -1,6 +1,10 @@
 export const sampleTasks = [
   {
     checked: false,
+    task: 'Mock up notes card',
+  },
+  {
+    checked: false,
     task: 'Add delete button to tasks',
   },
   {
