@@ -1,8 +1,6 @@
 import {
-  Paper,
   Typography,
   makeStyles,
-  Divider,
   Card,
   CardContent,
   CardHeader,

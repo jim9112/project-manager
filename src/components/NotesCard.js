@@ -33,8 +33,9 @@ const NotesCard = () => {
         Notes
       </Typography>
       <Divider />
-      {notes.map((note) => (
+      {notes.map((note, i) => (
         <Note
+          key={i}
           archived={note.archived}
           date={note.date}
           title={note.title}

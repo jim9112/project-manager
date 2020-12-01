@@ -1,4 +1,5 @@
 import { Paper, Typography, makeStyles, Divider } from '@material-ui/core';
+import Bug from './Bug';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -19,6 +20,7 @@ const BugsCard = () => {
         Bugs
       </Typography>
       <Divider />
+      <Bug />
     </Paper>
   );
 };
