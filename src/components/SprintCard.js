@@ -8,8 +8,10 @@ import {
   ListItem,
   ListItemText,
   Checkbox,
+  Fab,
 } from '@material-ui/core';
 import { useState } from 'react';
+import AddIcon from '@material-ui/icons/Add';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -21,6 +23,11 @@ const useStyles = makeStyles((theme) => ({
   },
   done: {
     textDecoration: 'line-through',
+  },
+  footerContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    flexDirection: 'column',
   },
 }));
 
@@ -40,6 +47,7 @@ const SprintCard = () => {
       task: 'Third Task',
     },
   ]);
+
   // line through to do items when checked
   const onCheck = (task, i) => {
     const updateList = todoList;
@@ -50,7 +58,9 @@ const SprintCard = () => {
     }
     setTodoList([...updateList]);
   };
+
   // add form dialog for new task
+
   return (
     <Paper className={classes.paper}>
       <Typography className={classes.title} variant="h4">
@@ -78,6 +88,11 @@ const SprintCard = () => {
           );
         })}
       </List>
+      <div className={classes.footerContainer}>
+        <Fab size="small" color="primary" aria-label="add">
+          <AddIcon />
+        </Fab>
+      </div>
     </Paper>
   );
 };
