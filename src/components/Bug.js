@@ -21,7 +21,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Bug = ({ archived, title, desc, priority, date }) => {
-  console.log(title);
   const classes = useStyles();
   return (
     <Card className={classes.root}>

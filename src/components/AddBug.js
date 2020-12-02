@@ -47,7 +47,7 @@ const AddBug = ({ open, setOpen, bugs, setBugs }) => {
       onClose={handleClose}
       aria-labelledby="form-dialog-title">
       <DialogTitle className={classes.title} id="form-dialog-title">
-        Add Note
+        Add A New Bug
       </DialogTitle>
       <form className={classes.newTextForm} onSubmit={handleSubmit}>
         <TextField
