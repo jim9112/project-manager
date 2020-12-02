@@ -31,9 +31,6 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     flexDirection: 'column',
   },
-  newTextForm: {
-    padding: '1rem',
-  },
 }));
 
 const SprintCard = () => {
