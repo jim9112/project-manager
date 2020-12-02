@@ -7,7 +7,7 @@ import {
     Button,
   } from '@material-ui/core';
   import { useState } from 'react';
-
+  import { getDate } from '../utils/helperFunctions'
 
   const useStyles = makeStyles((theme) => ({
     title: {
@@ -22,7 +22,7 @@ const AddNote = ({ open, setOpen, notes, setNotes}) => {
     const classes = useStyles();
     const [newNote, setNewNote] = useState({
         archived: false,
-        date: 'a date',
+        date: getDate(),
         title: '',
         content: '',
     });
