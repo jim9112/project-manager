@@ -20,17 +20,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Bug = () => {
+const Bug = ({ archived, title, desc, priority, date }) => {
+  console.log(title);
   const classes = useStyles();
   return (
     <Card className={classes.root}>
       <CardHeader
         avatar={<Chip label="Urgent" color="secondary" />}
-        title="Some bug name"
-        subheader="a date"
+        title={title}
+        subheader={date}
       />
       <CardContent>
-        <Typography varient="body">Bug description goes here</Typography>
+        <Typography varient="body">{desc}</Typography>
         <div className={classes.footerContainer}>
           <FormControlLabel
             control={<Switch />}
