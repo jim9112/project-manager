@@ -66,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SearchAppBar() {
+export default function SearchAppBar({ history }) {
   const classes = useStyles();
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -96,9 +96,11 @@ export default function SearchAppBar() {
             keepMounted
             open={Boolean(anchorEl)}
             onClose={handleClose}>
-            <MenuItem onClick={handleClose}>Profile</MenuItem>
-            <MenuItem onClick={handleClose}>My account</MenuItem>
-            <MenuItem onClick={handleClose}>Logout</MenuItem>
+            <MenuItem onClick={() => history.push('/')}>Home</MenuItem>
+            <MenuItem onClick={() => history.push('/today')}>
+              Today View
+            </MenuItem>
+            <MenuItem onClick={() => history.push('/login')}>Logout</MenuItem>
           </Menu>
           <Typography className={classes.title} variant="h6" noWrap>
             Find Clever Name

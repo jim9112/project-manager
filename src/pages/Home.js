@@ -1,9 +1,9 @@
 import AppBar from '../components/AppBar';
 
-const Home = () => {
+const Home = ({ history }) => {
   return (
     <>
-      <AppBar />
+      <AppBar history={history} />
       <h1>Home</h1>
     </>
   );

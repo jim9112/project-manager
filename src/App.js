@@ -1,4 +1,3 @@
-import AppBar from './components/AppBar';
 import TodayPage from './pages/TodayPage';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Login from './pages/Login';
