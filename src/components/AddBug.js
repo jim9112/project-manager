@@ -10,6 +10,7 @@ import {
   MenuItem,
 } from '@material-ui/core';
 import { useState } from 'react';
+import { getDate } from '../utils/helperFunctions'
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -24,7 +25,7 @@ const AddBug = ({ open, setOpen, bugs, setBugs }) => {
   const classes = useStyles();
   const [newBug, setNewBug] = useState({
     archived: false,
-    date: 'a date',
+    date: getDate(),
     title: '',
     desc: '',
     priority: 'High',
