@@ -8,7 +8,9 @@ import AddNote from './AddNote';
 const useStyles = makeStyles((theme) => ({
   paper: {
     minHeight: 500,
+    // height: '100vh',
     width: '100%',
+    // overflow: 'hidden',
   },
   title: {
     textAlign: 'center',
