@@ -9,15 +9,11 @@ import {
   ListItemText,
   Checkbox,
   Fab,
-  Dialog,
-  DialogTitle,
-  TextField,
-  DialogActions,
-  Button,
 } from '@material-ui/core';
 import { useState } from 'react';
 import AddIcon from '@material-ui/icons/Add';
 import { sampleTasks } from '../sampleData';
+import AddTask from './AddTask';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -43,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
 const SprintCard = () => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
-  const [newTask, setNewTask] = useState('');
+
   const [todoList, setTodoList] = useState([...sampleTasks]);
 
   // line through to do items when checked
@@ -60,18 +56,8 @@ const SprintCard = () => {
   };
 
   // add form dialog for new task
-  const handleClose = () => {
-    setOpen(false);
-  };
   const handleOpen = () => {
     setOpen(true);
-  };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const updateList = todoList;
-    updateList.unshift({ checked: false, task: newTask });
-    setTodoList([...updateList]);
-    handleClose();
   };
 
   return (
@@ -106,34 +92,7 @@ const SprintCard = () => {
           <AddIcon />
         </Fab>
       </div>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="form-dialog-title">
-        <DialogTitle className={classes.title} id="form-dialog-title">
-          Add Task
-        </DialogTitle>
-        <form className={classes.newTextForm} onSubmit={handleSubmit}>
-          <TextField
-            autoFocus
-            required={true}
-            margin="dense"
-            id="name"
-            label="New Task"
-            type="text"
-            fullWidth
-            onChange={(e) => setNewTask(e.currentTarget.value)}
-          />
-          <DialogActions>
-            <Button onClick={handleClose} color="primary">
-              Cancel
-            </Button>
-            <Button type="submit" color="primary">
-              Add Task
-            </Button>
-          </DialogActions>
-        </form>
-      </Dialog>
+      <AddTask open={open} setOpen={setOpen} todoList={todoList} setTodoList={setTodoList} />
     </Paper>
   );
 };
