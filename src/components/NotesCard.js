@@ -3,6 +3,7 @@ import { useState } from 'react';
 import AddIcon from '@material-ui/icons/Add';
 import Note from './Note';
 import { sampleNotes } from '../sampleData';
+import AddNote from './AddNote';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -22,9 +23,10 @@ const useStyles = makeStyles((theme) => ({
 const NotesCard = () => {
   const classes = useStyles();
   const [notes, setNotes] = useState([...sampleNotes]);
+  const [open, setOpen] = useState(false)
 
   const handleOpen = () => {
-    console.log('im open');
+    setOpen(true)
   };
 
   return (
@@ -47,6 +49,7 @@ const NotesCard = () => {
           <AddIcon />
         </Fab>
       </div>
+      <AddNote open={open} setOpen={setOpen} notes={notes} setNotes={setNotes} />
     </Paper>
   );
 };
