@@ -1,5 +1,12 @@
+import AppBar from '../components/AppBar';
+
 const Home = () => {
-  return <h1>Home</h1>;
+  return (
+    <>
+      <AppBar />
+      <h1>Home</h1>
+    </>
+  );
 };
 
 export default Home;

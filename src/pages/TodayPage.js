@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import BugsCard from '../components/BugsCard';
 import NotesCard from '../components/NotesCard';
 import SprintCard from '../components/SprintCard';
-
+import AppBar from '../components/AppBar';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -15,21 +15,24 @@ const TodayPage = () => {
   const classes = useStyles();
 
   return (
-    <Grid container className={classes.root} spacing={2}>
-      <Grid item xs={12}>
-        <Grid container justify="center" spacing={2}>
-          <Grid item xs={12} sm={12} md={4}>
-            <SprintCard />
-          </Grid>
-          <Grid item xs={12} sm={12} md={4}>
-            <BugsCard />
-          </Grid>
-          <Grid item xs={12} sm={12} md={4}>
-            <NotesCard />
+    <>
+      <AppBar />
+      <Grid container className={classes.root} spacing={2}>
+        <Grid item xs={12}>
+          <Grid container justify="center" spacing={2}>
+            <Grid item xs={12} sm={12} md={4}>
+              <SprintCard />
+            </Grid>
+            <Grid item xs={12} sm={12} md={4}>
+              <BugsCard />
+            </Grid>
+            <Grid item xs={12} sm={12} md={4}>
+              <NotesCard />
+            </Grid>
           </Grid>
         </Grid>
       </Grid>
-    </Grid>
+    </>
   );
 };
 

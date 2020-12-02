@@ -7,18 +7,11 @@ import Home from './pages/Home';
 function App() {
   return (
     <div className="App">
-      <AppBar />
       <BrowserRouter>
         <Switch>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/today">
-            <TodayPage />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
+          <Route path="/login" component={Login} />
+          <Route path="/today" component={TodayPage} />
+          <Route path="/" component={Home} />
         </Switch>
       </BrowserRouter>
     </div>
