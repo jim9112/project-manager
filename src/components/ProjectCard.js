@@ -1,3 +1,4 @@
+import { Grid } from '@material-ui/core';
 import {
   Button,
   Card,
@@ -8,22 +9,22 @@ import {
   Typography,
 } from '@material-ui/core';
 
-const ProjectCard = () => {
+const ProjectCard = ({ name, desc }) => {
   return (
-    <Card>
-      <CardHeader title="Project One" />
-      <Divider />
-      <CardContent>
-        <Typography variant="body1">
-          Here is some information about my Project.
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button color="primary" variant="contained">
-          Open
-        </Button>
-      </CardActions>
-    </Card>
+    <Grid item xs={12} sm={12} md={4}>
+      <Card>
+        <CardHeader title={name} />
+        <Divider />
+        <CardContent>
+          <Typography variant="body1">{desc}</Typography>
+        </CardContent>
+        <CardActions>
+          <Button color="primary" variant="contained">
+            Open
+          </Button>
+        </CardActions>
+      </Card>
+    </Grid>
   );
 };
 
