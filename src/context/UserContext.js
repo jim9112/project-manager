@@ -7,6 +7,10 @@ const UserContextProvider = ({ children }) => {
       name: 'My first project',
       desc: 'Here is some info about my first project',
     },
+    project2: {
+      name: 'My second project',
+      desc: 'Here is a project that is much better than my first project',
+    },
   });
 
   const context = {

@@ -27,8 +27,9 @@ const Home = ({ history }) => {
         <Grid item xs={12}>
           <Grid container justify="center" spacing={2}>
             {projects &&
-              Object.keys(projects).map((project) => (
+              Object.keys(projects).map((project, i) => (
                 <ProjectCard
+                  key={`${project}${i}`}
                   name={projects[project].name}
                   desc={projects[project].desc}
                 />
