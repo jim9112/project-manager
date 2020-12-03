@@ -27,7 +27,7 @@ const BugsCard = () => {
       archived: false,
       date: 'a date',
       title: 'Some Bug Name',
-      desc: 'A few words about mu bug',
+      desc: 'A few words about my bug',
       priority: 'High',
     },
   ]);
