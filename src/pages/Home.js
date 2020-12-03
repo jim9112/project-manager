@@ -34,7 +34,7 @@ const Home = ({ history }) => {
                   desc={projects[project].desc}
                 />
               ))}
-            <Grid className={classes.addButtonContainer} item justify="center">
+            <Grid className={classes.addButtonContainer} item>
               <Fab color="primary" aria-label="add">
                 <AddIcon />
               </Fab>
