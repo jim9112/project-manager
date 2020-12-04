@@ -1,9 +1,10 @@
 import { Fab, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import AppBar from '../components/AppBar';
 import ProjectCard from '../components/ProjectCard';
+import DialogContainer from '../containers/DialogContainer';
 import UserContext from '../context/UserContext';
 
 const useStyles = makeStyles((theme) => ({
@@ -19,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
 const Home = ({ history }) => {
   const classes = useStyles();
   const { projects, setProjects } = useContext(UserContext);
+  const [open, setOpen] = useState(false);
 
   return (
     <>
@@ -35,13 +37,17 @@ const Home = ({ history }) => {
                 />
               ))}
             <Grid className={classes.addButtonContainer} item>
-              <Fab color="primary" aria-label="add">
+              <Fab
+                color="primary"
+                aria-label="add"
+                onClick={() => setOpen(true)}>
                 <AddIcon />
               </Fab>
             </Grid>
           </Grid>
         </Grid>
       </Grid>
+      <DialogContainer open={open} setOpen={setOpen} title="New Project" />
     </>
   );
 };

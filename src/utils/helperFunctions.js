@@ -1,7 +1,7 @@
 const getDate = () => {
-    const today = new Date()
-    const date = today.toLocaleString();
-    return date
-}
+  const today = new Date();
+  const date = today.toLocaleString();
+  return date;
+};
 
-export { getDate }
+export { getDate };
