@@ -10,7 +10,7 @@ import {
   MenuItem,
 } from '@material-ui/core';
 import { useState } from 'react';
-import { getDate } from '../utils/helperFunctions'
+import { getDate } from '../utils/helperFunctions';
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -30,22 +30,20 @@ const AddBug = ({ open, setOpen, bugs, setBugs }) => {
     desc: '',
     priority: 'High',
   });
-  const handleClose = () => {
-    setOpen(false);
-  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const updateList = bugs;
     updateList.unshift({ ...newBug });
     setBugs([...updateList]);
-    handleClose();
+    setOpen(false);
   };
 
   return (
     <Dialog
       open={open}
-      onClose={handleClose}
+      onClose={() => setOpen(false)}
       aria-labelledby="form-dialog-title">
       <DialogTitle className={classes.title} id="form-dialog-title">
         Add A New Bug
@@ -89,7 +87,7 @@ const AddBug = ({ open, setOpen, bugs, setBugs }) => {
           <MenuItem value="Low">Low</MenuItem>
         </Select>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={() => setOpen(false)} color="primary">
             Cancel
           </Button>
           <Button type="submit" color="primary">

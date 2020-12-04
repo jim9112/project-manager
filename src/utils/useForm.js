@@ -1,9 +1,8 @@
 const { useState } = require('react');
 
 const useForm = (e) => {
-  e.preventDefault();
   const [input, setInput] = useState({});
-  const handleInput = () => {
+  const handleInput = (e) => {
     setInput({ ...input, [e.target.id]: e.target.value });
   };
 
