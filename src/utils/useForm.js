@@ -1,6 +1,6 @@
-const { useState } = require('react');
+import { useState } from 'react';
 
-const useInput = (e) => {
+const useForm = (e) => {
   const [input, setInput] = useState({});
   const handleInput = (e) => {
     setInput({ ...input, [e.target.id]: e.target.value });
@@ -9,4 +9,4 @@ const useInput = (e) => {
   return [handleInput, input];
 };
 
-export default useInput;
+export default useForm;

@@ -5,6 +5,8 @@ import {
   Button,
 } from '@material-ui/core';
 import useForm from '../utils/useForm';
+import { useContext } from 'react';
+import UserContext from '../context/UserContext';
 
 const useStyles = makeStyles((theme) => ({
   newTextForm: {
@@ -13,13 +15,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const NewProjectForm = ({ setOpen }) => {
+  const { projects, setProjects } = useContext(UserContext);
   const [handleInput, input] = useForm();
 
   const classes = useStyles();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('submitted');
+    const updatedProjects = projects;
+    updatedProjects[`project${projects.length + 1}`] = input;
+    setProjects({ ...updatedProjects });
+    setOpen(false);
   };
 
   return (
