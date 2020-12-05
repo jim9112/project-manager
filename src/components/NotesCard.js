@@ -4,6 +4,7 @@ import AddIcon from '@material-ui/icons/Add';
 import Note from './Note';
 import { sampleNotes } from '../sampleData';
 import AddNote from './AddNote';
+import DialogContainer from '../containers/DialogContainer';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -25,10 +26,10 @@ const useStyles = makeStyles((theme) => ({
 const NotesCard = () => {
   const classes = useStyles();
   const [notes, setNotes] = useState([...sampleNotes]);
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
-    setOpen(true)
+    setOpen(true);
   };
 
   return (
@@ -51,7 +52,18 @@ const NotesCard = () => {
           <AddIcon />
         </Fab>
       </div>
-      <AddNote open={open} setOpen={setOpen} notes={notes} setNotes={setNotes} />
+      {/* <DialogContainer
+        open={open}
+        setOpen={setOpen}
+        title="New Note"
+        NewComponentForm={<p> Test </p>}
+      /> */}
+      <AddNote
+        open={open}
+        setOpen={setOpen}
+        notes={notes}
+        setNotes={setNotes}
+      />
     </Paper>
   );
 };

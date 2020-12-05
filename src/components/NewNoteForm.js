@@ -4,9 +4,9 @@ import {
   DialogActions,
   Button,
 } from '@material-ui/core';
+import { useState } from 'react';
+import { getDate } from '../utils/helperFunctions';
 import useForm from '../utils/useForm';
-import { useContext } from 'react';
-import UserContext from '../context/UserContext';
 
 const useStyles = makeStyles((theme) => ({
   newTextForm: {
@@ -14,18 +14,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const NewProjectForm = ({ setOpen }) => {
-  const { projects, setProjects } = useContext(UserContext);
-  const [handleInput, input] = useForm();
-
+const NewNoteForm = ({ setOpen }) => {
   const classes = useStyles();
+
+  const [handleInput, input, setInput] = useForm();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const updatedProjects = projects;
-    updatedProjects[`project${Date.now()}`] = input;
-    setProjects({ ...updatedProjects });
-    setOpen(false);
+    setInput({ ...input, date: getDate() });
+    setInput({ ...input, archived: false });
+    // const updateList = notes;
+    // updateList.unshift({ ...newNote });
+    // setNotes([...updateList]);
+    // handleClose();
   };
 
   return (
@@ -34,8 +35,8 @@ const NewProjectForm = ({ setOpen }) => {
         autoFocus
         required={true}
         margin="dense"
-        id="name"
-        label="Project Title"
+        id="title"
+        label="Note Title"
         type="text"
         fullWidth
         onChange={handleInput}
@@ -43,8 +44,8 @@ const NewProjectForm = ({ setOpen }) => {
       <TextField
         required={true}
         margin="dense"
-        id="desc"
-        label="Project Description"
+        id="content"
+        label="Note Content"
         type="text"
         fullWidth
         onChange={handleInput}
@@ -61,4 +62,4 @@ const NewProjectForm = ({ setOpen }) => {
   );
 };
 
-export default NewProjectForm;
+export default NewNoteForm;

@@ -6,7 +6,7 @@ const useForm = (e) => {
     setInput({ ...input, [e.target.id]: e.target.value });
   };
 
-  return [handleInput, input];
+  return [handleInput, input, setInput];
 };
 
 export default useForm;

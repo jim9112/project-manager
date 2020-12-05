@@ -1,9 +1,6 @@
 import { makeStyles, Dialog, DialogTitle } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
-  // root: {
-  //   minWidth: '300px',
-  // },
   title: {
     textAlign: 'center',
   },
