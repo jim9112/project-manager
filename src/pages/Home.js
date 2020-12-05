@@ -6,6 +6,7 @@ import AppBar from '../components/AppBar';
 import ProjectCard from '../components/ProjectCard';
 import DialogContainer from '../containers/DialogContainer';
 import UserContext from '../context/UserContext';
+import NewProjectForm from '../components/NewProjectForm';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -47,7 +48,12 @@ const Home = ({ history }) => {
           </Grid>
         </Grid>
       </Grid>
-      <DialogContainer open={open} setOpen={setOpen} title="New Project" />
+      <DialogContainer
+        open={open}
+        setOpen={setOpen}
+        title="New Project"
+        NewComponentForm={NewProjectForm}
+      />
     </>
   );
 };
