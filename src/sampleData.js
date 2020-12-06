@@ -31,3 +31,14 @@ export const sampleNotes = [
     content: 'Here is another note. It is so much better than the last one',
   },
 ];
+
+export const sampleProjects = {
+  project1: {
+    name: 'My first project',
+    desc: 'Here is some info about my first project',
+  },
+  project2: {
+    name: 'My second project',
+    desc: 'Here is a project that is much better than my first project',
+  },
+}
