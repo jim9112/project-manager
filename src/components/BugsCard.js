@@ -1,8 +1,11 @@
 import { Paper, Typography, makeStyles, Divider, Fab } from '@material-ui/core';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import Bug from './Bug';
 import AddIcon from '@material-ui/icons/Add';
 import AddBug from './AddBug';
+import DialogContainer from '../containers/DialogContainer';
+import NewBugForm from '../components/NewBugForm';
+import UserContext from '../context/UserContext';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -22,15 +25,7 @@ const useStyles = makeStyles((theme) => ({
 const BugsCard = () => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
-  const [bugs, setBugs] = useState([
-    {
-      archived: false,
-      date: 'a date',
-      title: 'Some Bug Name',
-      desc: 'A few words about my bug',
-      priority: 'High',
-    },
-  ]);
+  const { bugs, setBugs } = useContext(UserContext);
   const handleOpen = () => setOpen(true);
   return (
     <Paper className={classes.paper}>
@@ -53,7 +48,12 @@ const BugsCard = () => {
           <AddIcon />
         </Fab>
       </div>
-      <AddBug open={open} setOpen={setOpen} bugs={bugs} setBugs={setBugs} />
+      <DialogContainer
+        open={open}
+        setOpen={setOpen}
+        title="New Task"
+        NewComponentForm={NewBugForm}
+      />
     </Paper>
   );
 };
