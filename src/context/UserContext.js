@@ -1,15 +1,20 @@
 import React, { createContext, useState } from 'react';
-import { sampleProjects } from '../sampleData'
+import { sampleProjects, sampleNotes } from '../sampleData'
 const UserContext = createContext({});
 
 const UserContextProvider = ({ children }) => {
   const [projects, setProjects] = useState({
    ...sampleProjects
   });
+  const [notes, setNotes] = useState([
+    ...sampleNotes
+  ])
 
   const context = {
     projects,
     setProjects,
+    notes,
+    setNotes,
   };
 
   return (
