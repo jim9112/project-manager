@@ -10,10 +10,11 @@ import {
   Checkbox,
   Fab,
 } from '@material-ui/core';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import AddIcon from '@material-ui/icons/Add';
-import { sampleTasks } from '../sampleData';
-import AddTask from './AddTask';
+import UserContext from '../context/UserContext';
+import DialogContainer from '../containers/DialogContainer'
+import NewTaskForm from '../components/NewTaskForm'
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -37,7 +38,7 @@ const SprintCard = () => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
 
-  const [todoList, setTodoList] = useState([...sampleTasks]);
+  const {todoList, setTodoList} = useContext(UserContext);
 
   // line through to do items when checked
   const onCheck = (task, i) => {
@@ -60,12 +61,9 @@ const SprintCard = () => {
   return (
     <Paper className={classes.paper}>
       <Typography className={classes.title} variant="h4">
-        Current Sprint
+        To Do
       </Typography>
       <Divider />
-      <Typography varient="h3" align="center">
-        Build Today Page
-      </Typography>
       <List>
         {todoList.map((task, i) => {
           return (
@@ -89,7 +87,12 @@ const SprintCard = () => {
           <AddIcon />
         </Fab>
       </div>
-      <AddTask open={open} setOpen={setOpen} todoList={todoList} setTodoList={setTodoList} />
+      <DialogContainer
+        open={open}
+        setOpen={setOpen}
+        title="New Task"
+        NewComponentForm={NewTaskForm}
+      />
     </Paper>
   );
 };

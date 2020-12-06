@@ -50,7 +50,7 @@ import {
             Cancel
           </Button>
           <Button type="submit" color="primary">
-            Add Note
+            Add Task
           </Button>
         </DialogActions>
       </form>
