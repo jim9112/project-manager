@@ -2,7 +2,6 @@ import { Paper, Typography, makeStyles, Divider, Fab } from '@material-ui/core';
 import { useContext, useState } from 'react';
 import Bug from './Bug';
 import AddIcon from '@material-ui/icons/Add';
-import AddBug from './AddBug';
 import DialogContainer from '../containers/DialogContainer';
 import NewBugForm from '../components/NewBugForm';
 import UserContext from '../context/UserContext';
