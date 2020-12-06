@@ -2,7 +2,7 @@ import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import BugsCard from '../components/BugsCard';
 import NotesCard from '../components/NotesCard';
-import SprintCard from '../components/SprintCard';
+import TodoCard from '../components/TodoCard';
 import AppBar from '../components/AppBar';
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,7 +21,7 @@ const TodayPage = ({ history }) => {
         <Grid item xs={12}>
           <Grid container justify="center" spacing={2}>
             <Grid item xs={12} sm={12} md={4}>
-              <SprintCard />
+              <TodoCard />
             </Grid>
             <Grid item xs={12} sm={12} md={4}>
               <BugsCard />
