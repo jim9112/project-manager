@@ -2,7 +2,6 @@ import { Paper, Typography, makeStyles, Divider, Fab } from '@material-ui/core';
 import { useContext, useState } from 'react';
 import AddIcon from '@material-ui/icons/Add';
 import Note from './Note';
-import { sampleNotes } from '../sampleData';
 import DialogContainer from '../containers/DialogContainer';
 import NewNoteForm from '../components/NewNoteForm';
 import UserContext from '../context/UserContext';
