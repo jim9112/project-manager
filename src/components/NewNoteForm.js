@@ -20,6 +20,7 @@ const NewNoteForm = ({ setOpen }) => {
   const [handleInput, input, setInput] = useForm();
   const {notes, setNotes} = useContext(UserContext);
 
+  // set standard data for not that doesnt come from form input
   useEffect(() => {
     setInput({...input, archived: false, date: Date.now()})
   },[])
