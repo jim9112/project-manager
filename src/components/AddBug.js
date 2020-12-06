@@ -72,12 +72,12 @@ const AddBug = ({ open, setOpen, bugs, setBugs }) => {
             setNewBug({ ...newBug, desc: e.currentTarget.value })
           }
         />
-        <InputLabel id="demo-simple-select-label">Severity</InputLabel>
+        <InputLabel id="priority-label">Severity</InputLabel>
         <Select
           fullWidth
           margin="dense"
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
+          labelId="priority-label"
+          id="priority"
           value={newBug.priority}
           onChange={(e) => {
             setNewBug({ ...newBug, priority: e.target.value });
