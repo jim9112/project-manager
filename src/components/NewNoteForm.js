@@ -4,9 +4,10 @@ import {
   DialogActions,
   Button,
 } from '@material-ui/core';
-import { useState } from 'react';
+import { useContext } from 'react';
 import { getDate } from '../utils/helperFunctions';
 import useForm from '../utils/useForm';
+import UserContext from '../context/UserContext';
 
 const useStyles = makeStyles((theme) => ({
   newTextForm: {
@@ -18,15 +19,16 @@ const NewNoteForm = ({ setOpen }) => {
   const classes = useStyles();
 
   const [handleInput, input, setInput] = useForm();
+  const {notes, setNotes} = useContext(UserContext)
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setInput({ ...input, date: getDate() });
     setInput({ ...input, archived: false });
-    // const updateList = notes;
-    // updateList.unshift({ ...newNote });
-    // setNotes([...updateList]);
-    // handleClose();
+    const updateList = notes;
+    updateList.unshift({ ...input });
+    setNotes([...updateList]);
+    setOpen(false);
   };
 
   return (
