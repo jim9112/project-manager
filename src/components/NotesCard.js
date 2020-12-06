@@ -1,10 +1,11 @@
 import { Paper, Typography, makeStyles, Divider, Fab } from '@material-ui/core';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import AddIcon from '@material-ui/icons/Add';
 import Note from './Note';
 import { sampleNotes } from '../sampleData';
-import AddNote from './AddNote';
 import DialogContainer from '../containers/DialogContainer';
+import NewNoteForm from '../components/NewNoteForm';
+import UserContext from '../context/UserContext';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -25,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 
 const NotesCard = () => {
   const classes = useStyles();
-  const [notes, setNotes] = useState([...sampleNotes]);
+  const {notes, setNotes} = useContext(UserContext);
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
@@ -52,17 +53,11 @@ const NotesCard = () => {
           <AddIcon />
         </Fab>
       </div>
-      {/* <DialogContainer
+      <DialogContainer
         open={open}
         setOpen={setOpen}
         title="New Note"
-        NewComponentForm={<p> Test </p>}
-      /> */}
-      <AddNote
-        open={open}
-        setOpen={setOpen}
-        notes={notes}
-        setNotes={setNotes}
+        NewComponentForm={NewNoteForm}
       />
     </Paper>
   );
