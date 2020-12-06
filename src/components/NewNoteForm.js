@@ -19,6 +19,10 @@ const NewNoteForm = ({ setOpen }) => {
 
   const [handleInput, input, setInput] = useForm();
   const {notes, setNotes} = useContext(UserContext);
+
+  useEffect(() => {
+    setInput({...input, archived: false, date: Date.now()})
+  },[])
   
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -54,7 +58,7 @@ const NewNoteForm = ({ setOpen }) => {
           Cancel
         </Button>
         <Button type="submit" color="primary">
-          Add Task
+          Add Note
         </Button>
       </DialogActions>
     </form>
