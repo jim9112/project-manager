@@ -7,6 +7,7 @@ import {
   makeStyles,
 } from '@material-ui/core';
 import { Link } from 'react-router-dom';
+import { signInWithGithub } from '../firebaseIndex';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -40,7 +41,11 @@ const SignUp = () => {
               </Button>
             </form>
             <Typography variant="body1">or</Typography>
-            <Button type="text" color="secondary" fullWidth>
+            <Button
+              type="text"
+              color="secondary"
+              fullWidth
+              onClick={signInWithGithub}>
               Sign in with GitHub
             </Button>
             <Typography variant="body1">Dont have an account yet?</Typography>{' '}
