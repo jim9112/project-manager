@@ -1,8 +1,9 @@
 import TodayPage from './pages/TodayPage';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import Login from './pages/Login';
-import Home from './pages/Home';
 import { UserContextProvider } from './context/UserContext';
+import Home from './pages/Home';
+import SignIn from './pages/SignIn';
+import SignUp from './pages/SignUp';
 
 function App() {
   return (
@@ -10,9 +11,10 @@ function App() {
       <BrowserRouter>
         <UserContextProvider>
           <Switch>
-            <Route path="/login" component={Login} />
+            <Route path="/" exact component={SignIn} />
+            <Route path="/signup" exact component={SignUp} />
             <Route path="/today" component={TodayPage} />
-            <Route path="/" component={Home} />
+            <Route path="/home" component={Home} />
           </Switch>
         </UserContextProvider>
       </BrowserRouter>
