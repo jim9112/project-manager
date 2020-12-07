@@ -6,6 +6,7 @@ import {
   TextField,
   makeStyles,
 } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,7 +31,7 @@ const SignUp = () => {
       <Grid container align="center">
         <Grid item xs={12}>
           <Paper className={classes.paper}>
-            <Typography variant="h4"> Sign In </Typography>
+            <Typography variant="h4"> Sign Up </Typography>
             <form className={classes.form} onSubmit={onSubmit}>
               <TextField id="email" label="Email" required fullWidth />
               <TextField id="password" label="Password" required fullWidth />
@@ -44,6 +45,8 @@ const SignUp = () => {
                 Submit
               </Button>
             </form>
+            <Typography variant="body1">Already have an account?</Typography>{' '}
+            <Link to="/">Sign In</Link>
           </Paper>
         </Grid>
       </Grid>

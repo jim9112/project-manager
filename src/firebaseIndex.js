@@ -17,3 +17,7 @@ firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
+const provider = new firebase.auth.GithubAuthProvider();
+export const signInWithGithub = () => {
+  auth.signInWithPopup(provider);
+};

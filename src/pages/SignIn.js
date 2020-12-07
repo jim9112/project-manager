@@ -6,6 +6,7 @@ import {
   TextField,
   makeStyles,
 } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,6 +39,12 @@ const SignUp = () => {
                 Submit
               </Button>
             </form>
+            <Typography variant="body1">or</Typography>
+            <Button type="text" color="secondary" fullWidth>
+              Sign in with GitHub
+            </Button>
+            <Typography variant="body1">Dont have an account yet?</Typography>{' '}
+            <Link to="/signup">Sign Up</Link>
           </Paper>
         </Grid>
       </Grid>
