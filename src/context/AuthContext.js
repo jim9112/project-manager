@@ -10,22 +10,23 @@ const AuthContextProvider = ({ children }) => {
       setUser(userAuth);
     });
   }, []);
-  // if (user) {
-  //   firestore
-  //     .collection(user.uid)
-  //     .get()
-  //     .then((collection) => {
-  //       if (collection.exists) {
-  //         console.log('its there');
-  //       } else {
-  //         firestore
-  //           .collection(user.uid)
-  //           .doc('projects')
-  //           .set({})
-  //           .then(console.log('collection added'));
-  //       }
-  //     });
-  // }
+  if (user) {
+    firestore
+      .collection('users')
+      .doc(user.uid)
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          console.log('its there');
+        } else {
+          firestore
+            .collection('users')
+            .doc(user.uid)
+            .set({})
+            .then(console.log('collection added'));
+        }
+      });
+  }
   const context = {
     user,
     setUser,
