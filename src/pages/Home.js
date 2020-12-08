@@ -7,6 +7,7 @@ import ProjectCard from '../components/ProjectCard';
 import DialogContainer from '../containers/DialogContainer';
 import UserContext from '../context/UserContext';
 import NewProjectForm from '../components/NewProjectForm';
+import AuthContext from '../context/AuthContext';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
 const Home = ({ history }) => {
   const classes = useStyles();
   const { projects, setProjects } = useContext(UserContext);
+  const { user } = useContext(AuthContext);
   const [open, setOpen] = useState(false);
 
   return (
