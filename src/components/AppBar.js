@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -8,6 +8,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import useLogOut from '../utils/useLogOut';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -69,8 +70,8 @@ const useStyles = makeStyles((theme) => ({
 export default function SearchAppBar({ history }) {
   const classes = useStyles();
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
-
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [handleLogOut] = useLogOut();
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -100,7 +101,12 @@ export default function SearchAppBar({ history }) {
             <MenuItem onClick={() => history.push('/today')}>
               Today View
             </MenuItem>
-            <MenuItem onClick={() => history.push('/login')}>Logout</MenuItem>
+            <MenuItem
+              onClick={() => {
+                handleLogOut(history);
+              }}>
+              Logout
+            </MenuItem>
           </Menu>
           <Typography className={classes.title} variant="h6" noWrap>
             Find Clever Name
