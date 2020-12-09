@@ -8,7 +8,7 @@ const useSignIn = () => {
   // to do: check if user already exsists
   // create account if they dont
   // send user to their page
-
+  const goToHome = (history) => history.push('/home');
   // check to see if user exsists, if not then create user
   const checkForProfile = () => {
     if (user) {
@@ -30,10 +30,10 @@ const useSignIn = () => {
     }
   };
 
-  const handleSignIn = async (signInMethod, history) => {
-    await signInMethod();
+  const handleSignIn = (signInMethod, history) => {
+    signInMethod();
     checkForProfile();
-    history.push('/home');
+    goToHome(history);
   };
   return [handleSignIn];
 };
