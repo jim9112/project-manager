@@ -8,6 +8,7 @@ import {
 } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { signInWithGithub } from '../firebaseIndex';
+import useSignIn from '../utils/useSignIn';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,8 +22,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SignUp = () => {
+const SignUp = ({ history }) => {
   const classes = useStyles();
+  const [handleSignIn] = useSignIn();
   const onSubmit = (e) => {
     e.preventDefault();
     console.log('Submitted');
@@ -45,7 +47,7 @@ const SignUp = () => {
               type="text"
               color="secondary"
               fullWidth
-              onClick={signInWithGithub}>
+              onClick={() => handleSignIn(signInWithGithub, history)}>
               Sign in with GitHub
             </Button>
             <Typography variant="body1">Dont have an account yet?</Typography>{' '}

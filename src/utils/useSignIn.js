@@ -1,12 +1,15 @@
 import { useContext } from 'react';
-import { auth, firestore } from '../firebaseIndex';
+import { firestore } from '../firebaseIndex';
 import AuthContext from '../context/AuthContext';
 
 const useSignIn = () => {
   const { user } = useContext(AuthContext);
+
   // to do: check if user already exsists
   // create account if they dont
   // send user to their page
+
+  // check to see if user exsists, if not then create user
   const checkForProfile = () => {
     if (user) {
       firestore
@@ -27,8 +30,8 @@ const useSignIn = () => {
     }
   };
 
-  const handleSignIn = (signInMethod, history) => {
-    signInMethod();
+  const handleSignIn = async (signInMethod, history) => {
+    await signInMethod();
     checkForProfile();
     history.push('/home');
   };
