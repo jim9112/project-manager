@@ -28,29 +28,6 @@ function useGetAndDisplayProjects() {
     }
   }, [user]);
 
-  // function getProjects() {
-  //   if (user) {
-  //     firestore
-  //       .collection('users')
-  //       .doc(user.uid)
-  //       .collection('Projects')
-  //       .get()
-  //       .then((querySnapshot) => {
-  //         const data = querySnapshot.docs.map((doc) => {
-  //           const newDoc = doc.data();
-  //           newDoc.id = doc.id;
-  //           return newDoc;
-  //         });
-  //         setProjects(data);
-  //         setLoading(false);
-  //       })
-  //       .catch((error) => console.log(error));
-  //   }
-  // }
-  // useEffect(() => {
-  //   getProjects();
-  // }, [user]);
-
   return { projects, loading };
 }
 

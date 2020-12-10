@@ -1,11 +1,10 @@
 import { useContext } from 'react';
 import AuthContext from '../context/AuthContext';
 import { firestore } from '../firebaseIndex';
-import useGetAndDisplayProjects from './useGetAndDisplayProjects';
 
 const useWriteToDatabase = () => {
   const { user } = useContext(AuthContext);
-  const { projects, loading, getProjects } = useGetAndDisplayProjects();
+
   const dbLocation = firestore
     .collection('users')
     .doc(user.uid)
