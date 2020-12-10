@@ -9,6 +9,8 @@ import {
 import { Link } from 'react-router-dom';
 import { signInWithGithub } from '../firebaseIndex';
 import useSignIn from '../utils/useSignIn';
+import AuthContext from '../context/AuthContext';
+import { useContext, useEffect } from 'react';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,7 +26,11 @@ const useStyles = makeStyles((theme) => ({
 
 const SignUp = ({ history }) => {
   const classes = useStyles();
+  const { user } = useContext(AuthContext);
   const [handleSignIn] = useSignIn();
+  useEffect(() => {
+    if (user) history.push('/home');
+  }, [user]);
   const onSubmit = (e) => {
     e.preventDefault();
     console.log('Submitted');
