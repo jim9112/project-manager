@@ -3,28 +3,31 @@ import AuthContext from '../context/AuthContext';
 import { firestore } from '../firebaseIndex';
 
 function useGetAndDisplayProjects() {
-  const [projects, setProjects] = useState({});
+  const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const { user } = useContext(AuthContext);
-  const updatedProjects = { ...projects };
+
   useEffect(() => {
-    if (user) {
-      firestore
-        .collection('users')
-        .doc(user.uid)
-        .collection('Projects')
-        .get()
-        .then((querySnapshot) => {
-          querySnapshot.forEach((doc) => {
-            console.log(doc.id, '=>', doc.data());
-            updatedProjects[doc.id] = {
-              name: doc.data().name,
-              desc: doc.data().desc,
-            };
+    const getProjects = () => {
+      if (user) {
+        firestore
+          .collection('users')
+          .doc(user.uid)
+          .collection('Projects')
+          .get()
+          .then((querySnapshot) => {
+            const data = querySnapshot.docs.map((doc) => {
+              const newDoc = doc.data();
+              newDoc.id = doc.id;
+              return newDoc;
+            });
+            setProjects(data);
+            setLoading(false);
+            console.log(projects);
           });
-        })
-        .then(setProjects(updatedProjects));
-    }
+      }
+    };
+    getProjects();
   }, [user]);
 
   return [projects, loading];

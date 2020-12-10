@@ -31,15 +31,17 @@ function Home({ history }) {
       <Grid className={classes.root} container spacing={2}>
         <Grid item xs={12}>
           <Grid container justify="center" spacing={2}>
-            {projects
-              ? Object.keys(projects).map((project) => (
-                  <ProjectCard
-                    key={`${project}`}
-                    name={projects[project].name}
-                    desc={projects[project].desc}
-                  />
-                ))
-              : null}
+            {!loading ? (
+              projects.map((project) => (
+                <ProjectCard
+                  key={project.id}
+                  name={project.name}
+                  desc={project.desc}
+                />
+              ))
+            ) : (
+              <h1>Loading...</h1>
+            )}
             <Grid className={classes.addButtonContainer} item>
               <Fab
                 color="primary"
