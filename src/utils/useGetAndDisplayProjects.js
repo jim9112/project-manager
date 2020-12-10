@@ -23,8 +23,8 @@ function useGetAndDisplayProjects() {
             });
             setProjects(data);
             setLoading(false);
-            console.log(projects);
-          });
+          })
+          .catch((error) => console.log(error));
       }
     };
     getProjects();

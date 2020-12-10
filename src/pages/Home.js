@@ -1,7 +1,7 @@
 import { Fab, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
-import { useContext, useEffect, useState } from 'react';
+import { useState } from 'react';
 import AppBar from '../components/AppBar';
 import ProjectCard from '../components/ProjectCard';
 import DialogContainer from '../containers/DialogContainer';
@@ -21,8 +21,6 @@ const useStyles = makeStyles((theme) => ({
 function Home({ history }) {
   const classes = useStyles();
   const [projects, loading] = useGetAndDisplayProjects();
-
-  // const [loading, setLoading] = useState(true);
   const [open, setOpen] = useState(false);
 
   return (
