@@ -7,7 +7,8 @@ import {
 import useForm from '../utils/useForm';
 import { useContext } from 'react';
 import UserContext from '../context/UserContext';
-
+import useWriteToDatabase from '../utils/useWriteToDatabase';
+import useGetAndDisplayProjects from '../utils/useGetAndDisplayProjects';
 const useStyles = makeStyles((theme) => ({
   newTextForm: {
     padding: '1rem',
@@ -15,16 +16,16 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const NewProjectForm = ({ setOpen }) => {
-  const { projects, setProjects } = useContext(UserContext);
+  // const { projects, setProjects } = useContext(UserContext);
   const [handleInput, input] = useForm();
+  const [addToCollection] = useWriteToDatabase();
+  const { projects, loading, getProjects } = useGetAndDisplayProjects();
 
   const classes = useStyles();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const updatedProjects = projects;
-    updatedProjects[`project${Date.now()}`] = input;
-    setProjects({ ...updatedProjects });
+    addToCollection(input);
     setOpen(false);
   };
 

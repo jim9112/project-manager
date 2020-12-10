@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 function Home({ history }) {
   const classes = useStyles();
-  const [projects, loading] = useGetAndDisplayProjects();
+  const { projects, loading } = useGetAndDisplayProjects();
   const [open, setOpen] = useState(false);
 
   return (

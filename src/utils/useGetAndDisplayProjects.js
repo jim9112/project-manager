@@ -8,29 +8,50 @@ function useGetAndDisplayProjects() {
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
-    const getProjects = () => {
-      if (user) {
-        firestore
-          .collection('users')
-          .doc(user.uid)
-          .collection('Projects')
-          .get()
-          .then((querySnapshot) => {
-            const data = querySnapshot.docs.map((doc) => {
-              const newDoc = doc.data();
-              newDoc.id = doc.id;
-              return newDoc;
-            });
-            setProjects(data);
-            setLoading(false);
-          })
-          .catch((error) => console.log(error));
-      }
-    };
-    getProjects();
+    if (user) {
+      const unsubscribe = firestore
+        .collection('users')
+        .doc(user.uid)
+        .collection('Projects')
+        .onSnapshot((querySnapshot) => {
+          const data = querySnapshot.docs.map((doc) => {
+            const newDoc = doc.data();
+            newDoc.id = doc.id;
+            console.log('listener triggered');
+            return newDoc;
+          });
+          setProjects(data);
+          setLoading(false);
+        });
+
+      return unsubscribe;
+    }
   }, [user]);
 
-  return [projects, loading];
+  // function getProjects() {
+  //   if (user) {
+  //     firestore
+  //       .collection('users')
+  //       .doc(user.uid)
+  //       .collection('Projects')
+  //       .get()
+  //       .then((querySnapshot) => {
+  //         const data = querySnapshot.docs.map((doc) => {
+  //           const newDoc = doc.data();
+  //           newDoc.id = doc.id;
+  //           return newDoc;
+  //         });
+  //         setProjects(data);
+  //         setLoading(false);
+  //       })
+  //       .catch((error) => console.log(error));
+  //   }
+  // }
+  // useEffect(() => {
+  //   getProjects();
+  // }, [user]);
+
+  return { projects, loading };
 }
 
 export default useGetAndDisplayProjects;
