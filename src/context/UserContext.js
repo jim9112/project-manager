@@ -1,14 +1,14 @@
 import React, { createContext, useState } from 'react';
-import { sampleProjects, sampleNotes, sampleTasks } from '../sampleData'
+import { sampleProjects, sampleNotes, sampleTasks } from '../sampleData';
 const UserContext = createContext({});
 
 const UserContextProvider = ({ children }) => {
+  const [currentProject, setCurrentProject] = useState(null);
+
   const [projects, setProjects] = useState({
-   ...sampleProjects
+    ...sampleProjects,
   });
-  const [notes, setNotes] = useState([
-    ...sampleNotes
-  ]);
+  const [notes, setNotes] = useState([...sampleNotes]);
   const [todoList, setTodoList] = useState([...sampleTasks]);
   const [bugs, setBugs] = useState([
     {
@@ -29,6 +29,8 @@ const UserContextProvider = ({ children }) => {
     setTodoList,
     bugs,
     setBugs,
+    currentProject,
+    setCurrentProject,
   };
 
   return (

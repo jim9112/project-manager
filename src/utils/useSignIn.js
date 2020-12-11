@@ -5,8 +5,6 @@ import AuthContext from '../context/AuthContext';
 const useSignIn = () => {
   const { user } = useContext(AuthContext);
 
-  // create account if they dont
-  // send user to their page
   // check to see if user exsists, if not then create user
   const checkForProfile = () => {
     if (user) {
