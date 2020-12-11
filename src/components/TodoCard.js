@@ -13,13 +13,14 @@ import {
 import { useContext, useState } from 'react';
 import AddIcon from '@material-ui/icons/Add';
 import UserContext from '../context/UserContext';
-import DialogContainer from '../containers/DialogContainer'
-import NewTaskForm from '../components/NewTaskForm'
+import AuthContext from '../context/AuthContext';
+import DialogContainer from '../containers/DialogContainer';
+import NewTaskForm from '../components/NewTaskForm';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    minHeight: 500,
     width: '100%',
+    minHeight: 500,
   },
   title: {
     textAlign: 'center',
@@ -38,7 +39,8 @@ const SprintCard = () => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
 
-  const {todoList, setTodoList} = useContext(UserContext);
+  const { todoList, setTodoList } = useContext(UserContext);
+  const { user } = useContext(AuthContext);
 
   // line through to do items when checked
   const onCheck = (task, i) => {

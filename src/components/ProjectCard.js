@@ -13,6 +13,7 @@ import UserContext from '../context/UserContext';
 
 const ProjectCard = ({ name, desc, projKey, history }) => {
   const { setCurrentProject } = useContext(UserContext);
+
   const onClick = () => {
     setCurrentProject(projKey);
     history.push('/today');
