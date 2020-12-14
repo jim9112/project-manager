@@ -41,7 +41,7 @@ const NewBugForm = ({ setOpen }) => {
         required={true}
         margin="dense"
         id="title"
-        label="Note Title"
+        label="Bug Title"
         type="text"
         fullWidth
         onChange={handleInput}

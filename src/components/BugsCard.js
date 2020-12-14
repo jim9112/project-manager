@@ -54,7 +54,7 @@ const BugsCard = () => {
       <DialogContainer
         open={open}
         setOpen={setOpen}
-        title="New Task"
+        title="New Bug"
         NewComponentForm={NewBugForm}
       />
     </Paper>
