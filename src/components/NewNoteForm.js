@@ -4,9 +4,9 @@ import {
   DialogActions,
   Button,
 } from '@material-ui/core';
-import { useContext, useEffect } from 'react';
+import { useEffect } from 'react';
 import useForm from '../utils/useForm';
-import UserContext from '../context/UserContext';
+import useAddToProjectSubCollection from '../utils/useAddToProjectSubCollection';
 
 const useStyles = makeStyles((theme) => ({
   newTextForm: {
@@ -18,18 +18,16 @@ const NewNoteForm = ({ setOpen }) => {
   const classes = useStyles();
 
   const [handleInput, input, setInput] = useForm();
-  const {notes, setNotes} = useContext(UserContext);
+  const addToCollection = useAddToProjectSubCollection('Notes');
 
   // set standard data for not that doesnt come from form input
   useEffect(() => {
-    setInput({...input, archived: false, date: Date.now()})
-  },[])
-  
+    setInput({ ...input, archived: false, date: Date.now() });
+  }, []);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    const updateList = notes;
-    updateList.unshift({ ...input });
-    setNotes([...updateList]);
+    addToCollection(input);
     setOpen(false);
   };
 
