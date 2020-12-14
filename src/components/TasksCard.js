@@ -56,11 +56,6 @@ const TasksCard = () => {
     setTodoList([...updateList]);
   };
 
-  // add form dialog for new task
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
   return (
     <Paper className={classes.paper}>
       <Typography className={classes.title} variant="h4">
@@ -90,7 +85,11 @@ const TasksCard = () => {
         )}
       </List>
       <div className={classes.footerContainer}>
-        <Fab size="small" color="primary" aria-label="add" onClick={handleOpen}>
+        <Fab
+          size="small"
+          color="primary"
+          aria-label="add"
+          onClick={() => setOpen(true)}>
           <AddIcon />
         </Fab>
       </div>
