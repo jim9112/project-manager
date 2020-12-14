@@ -7,9 +7,9 @@ import {
   Select,
   MenuItem,
 } from '@material-ui/core';
-import { useContext, useEffect } from 'react';
+import { useEffect } from 'react';
 import useForm from '../utils/useForm';
-import UserContext from '../context/UserContext';
+import useAddToProjectSubCollection from '../utils/useAddToProjectSubCollection';
 
 const useStyles = makeStyles((theme) => ({
   newTextForm: {
@@ -21,7 +21,7 @@ const NewBugForm = ({ setOpen }) => {
   const classes = useStyles();
 
   const [handleInput, input, setInput] = useForm();
-  const { bugs, setBugs } = useContext(UserContext);
+  const addToCollection = useAddToProjectSubCollection('Bugs');
 
   // set standard data for not that doesnt come from form input
   useEffect(() => {
@@ -30,9 +30,7 @@ const NewBugForm = ({ setOpen }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const updateList = bugs;
-    updateList.unshift({ ...input });
-    setBugs([...updateList]);
+    addToCollection(input);
     setOpen(false);
   };
 
