@@ -1,10 +1,10 @@
 import { Paper, Typography, makeStyles, Divider, Fab } from '@material-ui/core';
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import AddIcon from '@material-ui/icons/Add';
 import Note from './Note';
 import DialogContainer from '../containers/DialogContainer';
 import NewNoteForm from '../components/NewNoteForm';
-import UserContext from '../context/UserContext';
+import useGetProjectSubCollection from '../utils/useGetProjectSubCollection';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -25,8 +25,8 @@ const useStyles = makeStyles((theme) => ({
 
 const NotesCard = () => {
   const classes = useStyles();
-  const {notes, setNotes} = useContext(UserContext);
   const [open, setOpen] = useState(false);
+  const { output, loading } = useGetProjectSubCollection('Notes');
 
   const handleOpen = () => {
     setOpen(true);
@@ -38,15 +38,19 @@ const NotesCard = () => {
         Notes
       </Typography>
       <Divider />
-      {notes.map((note, i) => (
-        <Note
-          key={i}
-          archived={note.archived}
-          date={note.date}
-          title={note.title}
-          content={note.content}
-        />
-      ))}
+      {!loading ? (
+        output.map((note, i) => (
+          <Note
+            key={i}
+            archived={note.archived}
+            date={note.date}
+            title={note.title}
+            content={note.content}
+          />
+        ))
+      ) : (
+        <h4>Loading....</h4>
+      )}
       <div className={classes.footerContainer}>
         <Fab size="small" color="primary" aria-label="add" onClick={handleOpen}>
           <AddIcon />
