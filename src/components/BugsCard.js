@@ -1,10 +1,10 @@
 import { Paper, Typography, makeStyles, Divider, Fab } from '@material-ui/core';
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import Bug from './Bug';
 import AddIcon from '@material-ui/icons/Add';
 import DialogContainer from '../containers/DialogContainer';
 import NewBugForm from '../components/NewBugForm';
-import UserContext from '../context/UserContext';
+import useGetProjectSubCollection from '../utils/useGetProjectSubCollection';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
 const BugsCard = () => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
-  const { bugs, setBugs } = useContext(UserContext);
+  const { output, loading } = useGetProjectSubCollection('Bugs');
   const handleOpen = () => setOpen(true);
   return (
     <Paper className={classes.paper}>
@@ -32,16 +32,20 @@ const BugsCard = () => {
         Bugs
       </Typography>
       <Divider />
-      {bugs.map((bug, i) => (
-        <Bug
-          key={i}
-          archived={bug.archived}
-          date={bug.date}
-          title={bug.title}
-          desc={bug.desc}
-          priority={bug.priority}
-        />
-      ))}
+      {!loading ? (
+        output.map((bug, i) => (
+          <Bug
+            key={i}
+            archived={bug.archived}
+            date={bug.date}
+            title={bug.title}
+            desc={bug.desc}
+            priority={bug.priority}
+          />
+        ))
+      ) : (
+        <h4>Loading......</h4>
+      )}
       <div className={classes.footerContainer}>
         <Fab size="small" color="primary" aria-label="add" onClick={handleOpen}>
           <AddIcon />
