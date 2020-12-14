@@ -15,7 +15,7 @@ import AddIcon from '@material-ui/icons/Add';
 import UserContext from '../context/UserContext';
 import AuthContext from '../context/AuthContext';
 import DialogContainer from '../containers/DialogContainer';
-import NewTaskForm from '../components/NewTaskForm';
+import NewTaskForm from './NewTaskForm';
 import useGetProjectSubCollection from '../utils/useGetProjectSubCollection';
 
 const useStyles = makeStyles((theme) => ({
@@ -68,22 +68,26 @@ const TasksCard = () => {
       </Typography>
       <Divider />
       <List>
-        {todoList.map((task, i) => {
-          return (
-            <ListItem key={i} divider={true}>
-              <ListItemIcon>
-                <Checkbox
-                  checked={task.checked}
-                  onChange={() => onCheck(task, i)}
-                  color="primary"
-                />
-              </ListItemIcon>
-              <ListItemText className={task.checked ? classes.done : ''}>
-                {task.task}
-              </ListItemText>
-            </ListItem>
-          );
-        })}
+        {!loading ? (
+          output.map((task, i) => {
+            return (
+              <ListItem key={i} divider={true}>
+                <ListItemIcon>
+                  <Checkbox
+                    checked={task.checked}
+                    onChange={() => onCheck(task, i)}
+                    color="primary"
+                  />
+                </ListItemIcon>
+                <ListItemText className={task.checked ? classes.done : ''}>
+                  {task.task}
+                </ListItemText>
+              </ListItem>
+            );
+          })
+        ) : (
+          <h4>Loading</h4>
+        )}
       </List>
       <div className={classes.footerContainer}>
         <Fab size="small" color="primary" aria-label="add" onClick={handleOpen}>
