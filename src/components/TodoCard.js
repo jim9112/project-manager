@@ -16,6 +16,7 @@ import UserContext from '../context/UserContext';
 import AuthContext from '../context/AuthContext';
 import DialogContainer from '../containers/DialogContainer';
 import NewTaskForm from '../components/NewTaskForm';
+import useGetProjectSubCollection from '../utils/useGetProjectSubCollection';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -35,10 +36,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SprintCard = () => {
+const TasksCard = () => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
-
+  const { output, loading } = useGetProjectSubCollection('Tasks');
   const { todoList, setTodoList } = useContext(UserContext);
   const { user } = useContext(AuthContext);
 
@@ -63,7 +64,7 @@ const SprintCard = () => {
   return (
     <Paper className={classes.paper}>
       <Typography className={classes.title} variant="h4">
-        To Do
+        Tasks
       </Typography>
       <Divider />
       <List>
@@ -99,4 +100,4 @@ const SprintCard = () => {
   );
 };
 
-export default SprintCard;
+export default TasksCard;

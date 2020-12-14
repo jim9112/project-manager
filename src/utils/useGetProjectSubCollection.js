@@ -3,28 +3,32 @@ import AuthContext from '../context/AuthContext';
 import UserContext from '../context/UserContext';
 import { firestore } from '../firebaseIndex';
 
-function useGetData() {
+function useGetProjectSubCollection(type) {
   const [output, setOutput] = useState([]);
   const [loading, setLoading] = useState(true);
   const { user } = useContext(AuthContext);
+  const { currentProject } = useContext(UserContext);
 
   //  to do:
+  // pass in the path to data
   // take in type of data to get
   // subscribe to changes
   // adjust state accordingly
   // set data in component
 
   useEffect(() => {
-    if (user) {
+    if (user && currentProject) {
+      console.log('sub collection listener triggered');
       const unsubscribe = firestore
         .collection('users')
         .doc(user.uid)
         .collection('Projects')
+        .doc(currentProject)
+        .collection(type)
         .onSnapshot((querySnapshot) => {
           const data = querySnapshot.docs.map((doc) => {
             const newDoc = doc.data();
             newDoc.id = doc.id;
-            console.log('listener triggered');
             return newDoc;
           });
           setOutput(data);
@@ -32,10 +36,12 @@ function useGetData() {
         });
 
       return unsubscribe;
+    } else {
+      console.log(type);
     }
-  }, [user]);
+  }, [user, currentProject, type]);
 
   return { output, loading };
 }
 
-export default useGetData;
+export default useGetProjectSubCollection;
