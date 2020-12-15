@@ -22,12 +22,13 @@ const useStyles = makeStyles((theme) => ({
 
 const Bug = ({ archived, title, desc, priority, date }) => {
   const classes = useStyles();
+  const displayDate = new Date(date).toLocaleString();
   return (
     <Card className={classes.root}>
       <CardHeader
         avatar={<Chip label="Urgent" color="secondary" />}
         title={title}
-        subheader={date}
+        subheader={displayDate}
       />
       <CardContent>
         <Typography varient="body">{desc}</Typography>

@@ -16,11 +16,13 @@ const useStyles = makeStyles((theme) => ({
 
 const Note = ({ archived, date, title, content }) => {
   const classes = useStyles();
+
+  const displayDate = new Date(date).toLocaleString();
   return (
     <Card className={classes.root}>
       <CardHeader
         title={title}
-        subheader={date}
+        subheader={displayDate}
         action={
           <FormControlLabel
             control={<Switch />}
