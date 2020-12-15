@@ -46,9 +46,11 @@ const TasksCard = () => {
       <Divider />
       <List>
         {!loading ? (
-          output.map((task) => {
-            return <Task key={task.id} task={task} />;
-          })
+          output
+            .sort((x, y) => x.checked - y.checked)
+            .map((task) => {
+              return <Task key={task.id} task={task} />;
+            })
         ) : (
           <h4>Loading</h4>
         )}
