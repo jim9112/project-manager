@@ -5,6 +5,7 @@ import {
   Divider,
   List,
   Fab,
+  CircularProgress,
 } from '@material-ui/core';
 import { useContext, useState } from 'react';
 import AddIcon from '@material-ui/icons/Add';
@@ -13,6 +14,7 @@ import DialogContainer from '../containers/DialogContainer';
 import NewTaskForm from './NewTaskForm';
 import useGetProjectSubCollection from '../utils/useGetProjectSubCollection';
 import Task from './Task';
+import Spinner from './Spinner';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -21,9 +23,6 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     textAlign: 'center',
-  },
-  done: {
-    textDecoration: 'line-through',
   },
   footerContainer: {
     display: 'flex',
@@ -52,7 +51,7 @@ const TasksCard = () => {
               return <Task key={task.id} task={task} />;
             })
         ) : (
-          <h4>Loading</h4>
+          <Spinner />
         )}
       </List>
       <div className={classes.footerContainer}>

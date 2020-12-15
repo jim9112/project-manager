@@ -5,6 +5,7 @@ import AddIcon from '@material-ui/icons/Add';
 import DialogContainer from '../containers/DialogContainer';
 import NewBugForm from '../components/NewBugForm';
 import useGetProjectSubCollection from '../utils/useGetProjectSubCollection';
+import Spinner from './Spinner';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -44,7 +45,7 @@ const BugsCard = () => {
           />
         ))
       ) : (
-        <h4>Loading......</h4>
+        <Spinner />
       )}
       <div className={classes.footerContainer}>
         <Fab size="small" color="primary" aria-label="add" onClick={handleOpen}>

@@ -5,6 +5,7 @@ import Note from './Note';
 import DialogContainer from '../containers/DialogContainer';
 import NewNoteForm from '../components/NewNoteForm';
 import useGetProjectSubCollection from '../utils/useGetProjectSubCollection';
+import Spinner from './Spinner';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -49,7 +50,7 @@ const NotesCard = () => {
           />
         ))
       ) : (
-        <h4>Loading....</h4>
+        <Spinner />
       )}
       <div className={classes.footerContainer}>
         <Fab size="small" color="primary" aria-label="add" onClick={handleOpen}>
