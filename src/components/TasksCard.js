@@ -4,19 +4,15 @@ import {
   makeStyles,
   Divider,
   List,
-  ListItemIcon,
-  ListItem,
-  ListItemText,
-  Checkbox,
   Fab,
 } from '@material-ui/core';
 import { useContext, useState } from 'react';
 import AddIcon from '@material-ui/icons/Add';
-import UserContext from '../context/UserContext';
 import AuthContext from '../context/AuthContext';
 import DialogContainer from '../containers/DialogContainer';
 import NewTaskForm from './NewTaskForm';
 import useGetProjectSubCollection from '../utils/useGetProjectSubCollection';
+import Task from './Task';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -40,21 +36,7 @@ const TasksCard = () => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const { output, loading } = useGetProjectSubCollection('Tasks');
-  const { todoList, setTodoList } = useContext(UserContext);
   const { user } = useContext(AuthContext);
-
-  // line through to do items when checked
-  const onCheck = (task, i) => {
-    const updateList = todoList;
-    if (task.checked === true) {
-      updateList[i].checked = false;
-      updateList.unshift(updateList.splice(i, 1)[0]);
-    } else {
-      updateList[i].checked = true;
-      updateList.push(updateList.splice(i, 1)[0]);
-    }
-    setTodoList([...updateList]);
-  };
 
   return (
     <Paper className={classes.paper}>
@@ -64,21 +46,8 @@ const TasksCard = () => {
       <Divider />
       <List>
         {!loading ? (
-          output.map((task, i) => {
-            return (
-              <ListItem key={i} divider={true}>
-                <ListItemIcon>
-                  <Checkbox
-                    checked={task.checked}
-                    onChange={() => onCheck(task, i)}
-                    color="primary"
-                  />
-                </ListItemIcon>
-                <ListItemText className={task.checked ? classes.done : ''}>
-                  {task.task}
-                </ListItemText>
-              </ListItem>
-            );
+          output.map((task) => {
+            return <Task key={task.id} task={task} />;
           })
         ) : (
           <h4>Loading</h4>
