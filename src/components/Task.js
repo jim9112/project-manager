@@ -4,11 +4,14 @@ import {
   ListItem,
   ListItemText,
   Checkbox,
+  IconButton,
 } from '@material-ui/core';
+import DeleteIcon from '@material-ui/icons/Delete';
 import { firestore } from '../firebaseIndex';
 import AuthContext from '../context/AuthContext';
 import UserContext from '../context/UserContext';
 import { useContext } from 'react';
+import useDeleteFromProjectSubCollection from '../utils/useDeleteFromProjectSubCollection';
 
 const useStyles = makeStyles((theme) => ({
   done: {
@@ -20,6 +23,7 @@ const Task = ({ task }) => {
   const classes = useStyles();
   const { user } = useContext(AuthContext);
   const { currentProject } = useContext(UserContext);
+  const removeItem = useDeleteFromProjectSubCollection();
 
   // line through to do items when checked
   const onCheck = (task) => {
@@ -50,6 +54,11 @@ const Task = ({ task }) => {
     }
   };
 
+  const handleClick = (e) => {
+    console.log(task.id);
+    removeItem('Tasks', task.id);
+  };
+
   return (
     <ListItem divider={true}>
       <ListItemIcon>
@@ -62,6 +71,13 @@ const Task = ({ task }) => {
       <ListItemText className={task.checked ? classes.done : ''}>
         {task.task}
       </ListItemText>
+      <IconButton
+        aria-label="delete"
+        color="secondary"
+        edge="end"
+        onClick={handleClick}>
+        <DeleteIcon />
+      </IconButton>
     </ListItem>
   );
 };
