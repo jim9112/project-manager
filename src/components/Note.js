@@ -4,9 +4,11 @@ import {
   Card,
   CardContent,
   CardHeader,
-  Switch,
-  FormControlLabel,
+  IconButton,
 } from '@material-ui/core';
+import DeleteIcon from '@material-ui/icons/Delete';
+import { useState } from 'react';
+import ConfirmationAlert from './ConfirmationAlert';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -14,8 +16,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Note = ({ archived, date, title, content }) => {
+const Note = ({ date, title, content }) => {
   const classes = useStyles();
+  const [open, setOpen] = useState(false);
 
   const displayDate = new Date(date).toLocaleString();
   return (
@@ -24,16 +27,20 @@ const Note = ({ archived, date, title, content }) => {
         title={title}
         subheader={displayDate}
         action={
-          <FormControlLabel
-            control={<Switch />}
-            label={'Archive'}
-            labelPlacement="start"
-          />
+          <IconButton color="secondary" onClick={() => setOpen(true)}>
+            <DeleteIcon />
+          </IconButton>
         }
       />
       <CardContent>
         <Typography varient="body">{content}</Typography>
       </CardContent>
+      <ConfirmationAlert
+        open={open}
+        setOpen={setOpen}
+        title={'Delete Note?'}
+        message={`Do you want to delete the note: ${title}`}
+      />
     </Card>
   );
 };
