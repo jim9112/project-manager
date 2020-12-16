@@ -26,7 +26,7 @@ const Bug = ({ archived, title, desc, priority, date }) => {
   return (
     <Card className={classes.root}>
       <CardHeader
-        avatar={<Chip label="Urgent" color="secondary" />}
+        avatar={<Chip label={priority} color="secondary" />}
         title={title}
         subheader={displayDate}
       />
