@@ -8,6 +8,7 @@ import {
 } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { useState } from 'react';
+import useDeleteFromProjectSubCollection from '../utils/useDeleteFromProjectSubCollection';
 import ConfirmationAlert from './ConfirmationAlert';
 
 const useStyles = makeStyles((theme) => ({
@@ -16,9 +17,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Note = ({ date, title, content }) => {
+const Note = ({ date, title, content, id }) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
+  const removeItem = useDeleteFromProjectSubCollection();
 
   const displayDate = new Date(date).toLocaleString();
   return (
@@ -40,6 +42,9 @@ const Note = ({ date, title, content }) => {
         setOpen={setOpen}
         title={'Delete Note?'}
         message={`Do you want to delete the note: ${title}`}
+        action={removeItem}
+        param1={'Notes'}
+        param2={id}
       />
     </Card>
   );

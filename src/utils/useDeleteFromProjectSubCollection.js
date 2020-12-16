@@ -8,7 +8,6 @@ const useDeleteFromProjectSubCollection = () => {
   const { currentProject } = useContext(UserContext);
 
   const removeItem = (type, item) => {
-    console.log('Deleting');
     firestore
       .collection('users')
       .doc(user.uid)

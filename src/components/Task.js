@@ -56,6 +56,7 @@ const Task = ({ task }) => {
     }
   };
 
+  // handle clicking the delete button
   const handleClick = (e) => {
     if (task.checked) {
       removeItem('Tasks', task.id);

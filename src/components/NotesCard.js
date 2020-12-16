@@ -40,13 +40,14 @@ const NotesCard = () => {
       </Typography>
       <Divider />
       {!loading ? (
-        output.map((note, i) => (
+        output.map((note) => (
           <Note
-            key={i}
+            key={note.id}
             archived={note.archived}
             date={note.date}
             title={note.title}
             content={note.content}
+            id={note.id}
           />
         ))
       ) : (
