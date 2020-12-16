@@ -45,6 +45,7 @@ const NewNoteForm = ({ setOpen }) => {
       />
       <TextField
         required={true}
+        multiline
         margin="dense"
         id="content"
         label="Note Content"
