@@ -5,7 +5,6 @@ import {
   Divider,
   List,
   Fab,
-  CircularProgress,
 } from '@material-ui/core';
 import { useContext, useState } from 'react';
 import AddIcon from '@material-ui/icons/Add';
