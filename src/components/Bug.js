@@ -7,7 +7,9 @@ import {
   Switch,
   FormControlLabel,
   Chip,
+  IconButton,
 } from '@material-ui/core';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Bug = ({ archived, title, desc, priority, date }) => {
+const Bug = ({ title, desc, priority, date }) => {
   const classes = useStyles();
   const displayDate = new Date(date).toLocaleString();
   return (
@@ -29,16 +31,14 @@ const Bug = ({ archived, title, desc, priority, date }) => {
         avatar={<Chip label={priority} color="secondary" />}
         title={title}
         subheader={displayDate}
+        action={
+          <IconButton color="secondary">
+            <DeleteIcon />
+          </IconButton>
+        }
       />
       <CardContent>
         <Typography varient="body">{desc}</Typography>
-        <div className={classes.footerContainer}>
-          <FormControlLabel
-            control={<Switch />}
-            label={'Bug Squashed'}
-            labelPlacement="start"
-          />
-        </div>
       </CardContent>
     </Card>
   );
