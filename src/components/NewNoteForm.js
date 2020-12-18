@@ -7,6 +7,7 @@ import {
 import { useEffect } from 'react';
 import useForm from '../utils/useForm';
 import useAddToProjectSubCollection from '../utils/useAddToProjectSubCollection';
+import useEditProjectSubCollection from '../utils/useEditProjectSubCollection';
 
 const useStyles = makeStyles((theme) => ({
   newTextForm: {
@@ -19,6 +20,7 @@ const NewNoteForm = ({ setOpen, type, id, currentValues }) => {
 
   const [handleInput, input, setInput] = useForm();
   const addToCollection = useAddToProjectSubCollection('Notes');
+  const editCollection = useEditProjectSubCollection('Notes');
 
   // set standard data for not that doesnt come from form input || add current value on edit
   useEffect(() => {
@@ -33,6 +35,9 @@ const NewNoteForm = ({ setOpen, type, id, currentValues }) => {
     e.preventDefault();
     if (type === 'New') {
       addToCollection(input);
+      setOpen(false);
+    } else if (type === 'Edit') {
+      editCollection(id, input);
       setOpen(false);
     }
   };
@@ -66,7 +71,7 @@ const NewNoteForm = ({ setOpen, type, id, currentValues }) => {
           Cancel
         </Button>
         <Button type="submit" color="primary">
-          Add Note
+          Save
         </Button>
       </DialogActions>
     </form>
