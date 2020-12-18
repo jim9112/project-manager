@@ -6,7 +6,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const DialogContainer = ({ open, setOpen, title, NewComponentForm }) => {
+const DialogContainer = ({
+  open,
+  setOpen,
+  title,
+  NewComponentForm,
+  type,
+  id,
+  currentValues,
+}) => {
   const classes = useStyles();
   return (
     <Dialog
@@ -17,7 +25,12 @@ const DialogContainer = ({ open, setOpen, title, NewComponentForm }) => {
       <DialogTitle className={classes.title} id="form-dialog-title">
         {title}
       </DialogTitle>
-      <NewComponentForm setOpen={setOpen} />
+      <NewComponentForm
+        setOpen={setOpen}
+        type={type}
+        id={id}
+        currentValues={currentValues}
+      />
     </Dialog>
   );
 };

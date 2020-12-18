@@ -9,8 +9,10 @@ import {
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import { useState } from 'react';
+import DialogContainer from '../containers/DialogContainer';
 import useDeleteFromProjectSubCollection from '../utils/useDeleteFromProjectSubCollection';
 import ConfirmationAlert from './ConfirmationAlert';
+import NewNoteForm from './NewNoteForm';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
 const Note = ({ date, title, content, id }) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
+  const [editOpen, setEditOpen] = useState(false);
   const removeItem = useDeleteFromProjectSubCollection();
 
   const displayDate = new Date(date).toLocaleString();
@@ -34,7 +37,7 @@ const Note = ({ date, title, content, id }) => {
             <IconButton color="secondary" onClick={() => setOpen(true)}>
               <DeleteIcon />
             </IconButton>
-            <IconButton color="secondary">
+            <IconButton color="secondary" onClick={() => setEditOpen(true)}>
               <EditIcon />
             </IconButton>
           </div>
@@ -51,6 +54,19 @@ const Note = ({ date, title, content, id }) => {
         action={removeItem}
         param1={'Notes'}
         param2={id}
+      />
+      <DialogContainer
+        open={editOpen}
+        setOpen={setEditOpen}
+        title="Edit Note"
+        type={'Edit'}
+        currentValues={{
+          title: title,
+          content: content,
+          date: date,
+        }}
+        id={id}
+        NewComponentForm={NewNoteForm}
       />
     </Card>
   );

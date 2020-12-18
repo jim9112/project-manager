@@ -14,21 +14,27 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const NewNoteForm = ({ setOpen }) => {
+const NewNoteForm = ({ setOpen, type, id, currentValues }) => {
   const classes = useStyles();
 
   const [handleInput, input, setInput] = useForm();
   const addToCollection = useAddToProjectSubCollection('Notes');
 
-  // set standard data for not that doesnt come from form input
+  // set standard data for not that doesnt come from form input || add current value on edit
   useEffect(() => {
-    setInput({ ...input, archived: false, date: Date.now() });
+    if (!currentValues) {
+      setInput({ ...input, date: Date.now() });
+    } else if (currentValues) {
+      setInput(currentValues);
+    }
   }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addToCollection(input);
-    setOpen(false);
+    if (type === 'New') {
+      addToCollection(input);
+      setOpen(false);
+    }
   };
 
   return (
@@ -41,6 +47,7 @@ const NewNoteForm = ({ setOpen }) => {
         label="Note Title"
         type="text"
         fullWidth
+        value={input.title}
         onChange={handleInput}
       />
       <TextField
@@ -51,6 +58,7 @@ const NewNoteForm = ({ setOpen }) => {
         label="Note Content"
         type="text"
         fullWidth
+        value={input.content}
         onChange={handleInput}
       />
       <DialogActions>

@@ -62,6 +62,7 @@ const NotesCard = () => {
         open={open}
         setOpen={setOpen}
         title="New Note"
+        type={'New'}
         NewComponentForm={NewNoteForm}
       />
     </Paper>
