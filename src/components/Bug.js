@@ -10,6 +10,9 @@ import {
   IconButton,
 } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
+import { useState } from 'react';
+import useDeleteFromProjectSubCollection from '../utils/useDeleteFromProjectSubCollection';
+import ConfirmationAlert from './ConfirmationAlert';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,8 +25,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Bug = ({ title, desc, priority, date }) => {
+const Bug = ({ title, desc, priority, date, id }) => {
   const classes = useStyles();
+  const [open, setOpen] = useState(false);
+  const removeItem = useDeleteFromProjectSubCollection();
   const displayDate = new Date(date).toLocaleString();
   return (
     <Card className={classes.root}>
@@ -32,7 +37,7 @@ const Bug = ({ title, desc, priority, date }) => {
         title={title}
         subheader={displayDate}
         action={
-          <IconButton color="secondary">
+          <IconButton color="secondary" onClick={() => setOpen(true)}>
             <DeleteIcon />
           </IconButton>
         }
@@ -40,6 +45,15 @@ const Bug = ({ title, desc, priority, date }) => {
       <CardContent>
         <Typography varient="body">{desc}</Typography>
       </CardContent>
+      <ConfirmationAlert
+        open={open}
+        setOpen={setOpen}
+        title={'Delete Note?'}
+        message={`Do you want to delete the Bug: ${title}`}
+        action={removeItem}
+        param1={'Bugs'}
+        param2={id}
+      />
     </Card>
   );
 };

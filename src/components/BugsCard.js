@@ -34,14 +34,15 @@ const BugsCard = () => {
       </Typography>
       <Divider />
       {!loading ? (
-        output.map((bug, i) => (
+        output.map((bug) => (
           <Bug
-            key={i}
+            key={bug.id}
             archived={bug.archived}
             date={bug.date}
             title={bug.title}
             desc={bug.desc}
             priority={bug.priority}
+            id={bug.id}
           />
         ))
       ) : (

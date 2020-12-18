@@ -25,7 +25,7 @@ const NewBugForm = ({ setOpen }) => {
 
   // set standard data for not that doesnt come from form input
   useEffect(() => {
-    setInput({ ...input, archived: false, date: Date.now(), priority: 'High' });
+    setInput({ ...input, date: Date.now(), priority: 'High' });
   }, []);
 
   const handleSubmit = (e) => {
@@ -48,6 +48,7 @@ const NewBugForm = ({ setOpen }) => {
       />
       <TextField
         required={true}
+        multiline
         margin="dense"
         id="desc"
         label="Bug Description"
@@ -72,7 +73,7 @@ const NewBugForm = ({ setOpen }) => {
           Cancel
         </Button>
         <Button type="submit" color="primary">
-          Add Task
+          Add Bug
         </Button>
       </DialogActions>
     </form>
