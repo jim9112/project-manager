@@ -17,7 +17,6 @@ function useGetAndDisplayProjects() {
           const data = querySnapshot.docs.map((doc) => {
             const newDoc = doc.data();
             newDoc.id = doc.id;
-            console.log('listener triggered');
             return newDoc;
           });
           setProjects(data);
