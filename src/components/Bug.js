@@ -60,7 +60,7 @@ const Bug = ({ title, desc, priority, date, id }) => {
       <ConfirmationAlert
         open={open}
         setOpen={setOpen}
-        title={'Delete Note?'}
+        title={'Delete Bug?'}
         message={`Do you want to delete the Bug: ${title}`}
         action={removeItem}
         param1={'Bugs'}

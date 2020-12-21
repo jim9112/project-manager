@@ -9,13 +9,6 @@ function useGetProjectSubCollection(type) {
   const { user } = useContext(AuthContext);
   const { currentProject } = useContext(UserContext);
 
-  //  to do:
-  // pass in the path to data
-  // take in type of data to get
-  // subscribe to changes
-  // adjust state accordingly
-  // set data in component
-
   useEffect(() => {
     if (user && currentProject) {
       console.log('sub collection listener triggered');

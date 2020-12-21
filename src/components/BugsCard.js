@@ -57,6 +57,7 @@ const BugsCard = () => {
         open={open}
         setOpen={setOpen}
         title="New Bug"
+        type={'New'}
         NewComponentForm={NewBugForm}
       />
     </Paper>
