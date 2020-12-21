@@ -6,15 +6,9 @@ import DialogContainer from '../containers/DialogContainer';
 import NewNoteForm from '../components/NewNoteForm';
 import useGetProjectSubCollection from '../utils/useGetProjectSubCollection';
 import Spinner from './Spinner';
+import ContentCard from '../containers/ContentCard';
 
 const useStyles = makeStyles((theme) => ({
-  paper: {
-    minHeight: 500,
-    // height: '100vh',
-    width: '100%',
-    // overflow: 'hidden',
-    paddingBottom: '1rem',
-  },
   title: {
     textAlign: 'center',
   },
@@ -35,7 +29,7 @@ const NotesCard = () => {
   };
 
   return (
-    <Paper className={classes.paper}>
+    <ContentCard>
       <Typography className={classes.title} variant="h4">
         Notes
       </Typography>
@@ -66,7 +60,7 @@ const NotesCard = () => {
         type={'New'}
         NewComponentForm={NewNoteForm}
       />
-    </Paper>
+    </ContentCard>
   );
 };
 

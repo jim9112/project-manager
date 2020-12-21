@@ -6,13 +6,9 @@ import DialogContainer from '../containers/DialogContainer';
 import NewBugForm from '../components/NewBugForm';
 import useGetProjectSubCollection from '../utils/useGetProjectSubCollection';
 import Spinner from './Spinner';
+import ContentCard from '../containers/ContentCard';
 
 const useStyles = makeStyles((theme) => ({
-  paper: {
-    minHeight: 500,
-    width: '100%',
-    paddingBottom: '1rem',
-  },
   title: {
     textAlign: 'center',
   },
@@ -29,7 +25,7 @@ const BugsCard = () => {
   const { output, loading } = useGetProjectSubCollection('Bugs');
   const handleOpen = () => setOpen(true);
   return (
-    <Paper className={classes.paper}>
+    <ContentCard>
       <Typography className={classes.title} variant="h4">
         Bugs
       </Typography>
@@ -61,7 +57,7 @@ const BugsCard = () => {
         type={'New'}
         NewComponentForm={NewBugForm}
       />
-    </Paper>
+    </ContentCard>
   );
 };
 

@@ -14,13 +14,9 @@ import NewTaskForm from './NewTaskForm';
 import useGetProjectSubCollection from '../utils/useGetProjectSubCollection';
 import Task from './Task';
 import Spinner from './Spinner';
+import ContentCard from '../containers/ContentCard';
 
 const useStyles = makeStyles((theme) => ({
-  paper: {
-    width: '100%',
-    minHeight: 500,
-    paddingBottom: '1rem',
-  },
   title: {
     textAlign: 'center',
   },
@@ -38,7 +34,7 @@ const TasksCard = () => {
   const { user } = useContext(AuthContext);
 
   return (
-    <Paper className={classes.paper}>
+    <ContentCard>
       <Typography className={classes.title} variant="h4">
         Tasks
       </Typography>
@@ -69,7 +65,7 @@ const TasksCard = () => {
         title="New Task"
         NewComponentForm={NewTaskForm}
       />
-    </Paper>
+    </ContentCard>
   );
 };
 
