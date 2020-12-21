@@ -1,27 +1,17 @@
-import { makeStyles, Fab } from '@material-ui/core';
 import { useState } from 'react';
 import Bug from './Bug';
-import AddIcon from '@material-ui/icons/Add';
 import DialogContainer from '../containers/DialogContainer';
 import NewBugForm from '../components/NewBugForm';
-import useGetProjectSubCollection from '../utils/useGetProjectSubCollection';
 import Spinner from './Spinner';
 import ContentCard from '../containers/ContentCard';
 import CardHeader from './CardHeader';
-
-const useStyles = makeStyles((theme) => ({
-  footerContainer: {
-    display: 'flex',
-    alignItems: 'center',
-    flexDirection: 'column',
-  },
-}));
+import CardFooter from './CardFooter';
+import useGetProjectSubCollection from '../utils/useGetProjectSubCollection';
 
 const BugsCard = () => {
-  const classes = useStyles();
   const [open, setOpen] = useState(false);
   const { output, loading } = useGetProjectSubCollection('Bugs');
-  const handleOpen = () => setOpen(true);
+
   return (
     <ContentCard>
       <CardHeader title="Bugs" />
@@ -40,11 +30,7 @@ const BugsCard = () => {
       ) : (
         <Spinner />
       )}
-      <div className={classes.footerContainer}>
-        <Fab size="small" color="primary" aria-label="add" onClick={handleOpen}>
-          <AddIcon />
-        </Fab>
-      </div>
+      <CardFooter setOpen={setOpen} />
       <DialogContainer
         open={open}
         setOpen={setOpen}

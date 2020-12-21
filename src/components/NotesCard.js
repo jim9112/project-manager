@@ -1,30 +1,16 @@
-import { makeStyles, Fab } from '@material-ui/core';
 import { useState } from 'react';
-import AddIcon from '@material-ui/icons/Add';
 import Note from './Note';
 import DialogContainer from '../containers/DialogContainer';
 import NewNoteForm from '../components/NewNoteForm';
-import useGetProjectSubCollection from '../utils/useGetProjectSubCollection';
 import Spinner from './Spinner';
 import ContentCard from '../containers/ContentCard';
 import CardHeader from './CardHeader';
-
-const useStyles = makeStyles((theme) => ({
-  footerContainer: {
-    display: 'flex',
-    alignItems: 'center',
-    flexDirection: 'column',
-  },
-}));
+import CardFooter from './CardFooter';
+import useGetProjectSubCollection from '../utils/useGetProjectSubCollection';
 
 const NotesCard = () => {
-  const classes = useStyles();
   const [open, setOpen] = useState(false);
   const { output, loading } = useGetProjectSubCollection('Notes');
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
 
   return (
     <ContentCard>
@@ -43,11 +29,9 @@ const NotesCard = () => {
       ) : (
         <Spinner />
       )}
-      <div className={classes.footerContainer}>
-        <Fab size="small" color="primary" aria-label="add" onClick={handleOpen}>
-          <AddIcon />
-        </Fab>
-      </div>
+
+      <CardFooter setOpen={setOpen} />
+
       <DialogContainer
         open={open}
         setOpen={setOpen}
