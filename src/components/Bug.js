@@ -4,8 +4,6 @@ import {
   Card,
   CardContent,
   CardHeader,
-  Switch,
-  FormControlLabel,
   Chip,
   IconButton,
 } from '@material-ui/core';

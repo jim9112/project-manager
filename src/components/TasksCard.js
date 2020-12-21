@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     width: '100%',
     minHeight: 500,
+    paddingBottom: '1rem',
   },
   title: {
     textAlign: 'center',

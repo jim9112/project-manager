@@ -13,6 +13,7 @@ const useStyles = makeStyles((theme) => ({
     // height: '100vh',
     width: '100%',
     // overflow: 'hidden',
+    paddingBottom: '1rem',
   },
   title: {
     textAlign: 'center',
