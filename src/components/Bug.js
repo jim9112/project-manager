@@ -10,9 +10,12 @@ import {
   IconButton,
 } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
 import { useState } from 'react';
+import DialogContainer from '../containers/DialogContainer';
 import useDeleteFromProjectSubCollection from '../utils/useDeleteFromProjectSubCollection';
 import ConfirmationAlert from './ConfirmationAlert';
+import NewBugForm from './NewBugForm';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,9 +30,13 @@ const useStyles = makeStyles((theme) => ({
 
 const Bug = ({ title, desc, priority, date, id }) => {
   const classes = useStyles();
+
   const [open, setOpen] = useState(false);
+  const [editOpen, setEditOpen] = useState(false);
   const removeItem = useDeleteFromProjectSubCollection();
+
   const displayDate = new Date(date).toLocaleString();
+
   return (
     <Card className={classes.root}>
       <CardHeader
@@ -37,9 +44,14 @@ const Bug = ({ title, desc, priority, date, id }) => {
         title={title}
         subheader={displayDate}
         action={
-          <IconButton color="secondary" onClick={() => setOpen(true)}>
-            <DeleteIcon />
-          </IconButton>
+          <div>
+            <IconButton color="secondary" onClick={() => setOpen(true)}>
+              <DeleteIcon />
+            </IconButton>
+            <IconButton color="secondary" onClick={() => setEditOpen(true)}>
+              <EditIcon />
+            </IconButton>
+          </div>
         }
       />
       <CardContent>
@@ -53,6 +65,20 @@ const Bug = ({ title, desc, priority, date, id }) => {
         action={removeItem}
         param1={'Bugs'}
         param2={id}
+      />
+      <DialogContainer
+        open={editOpen}
+        setOpen={setEditOpen}
+        title="Edit Bug"
+        type={'Edit'}
+        currentValues={{
+          title: title,
+          desc: desc,
+          date: date,
+          priority: priority,
+        }}
+        id={id}
+        NewComponentForm={NewBugForm}
       />
     </Card>
   );

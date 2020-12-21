@@ -10,6 +10,7 @@ import {
 import { useEffect } from 'react';
 import useForm from '../utils/useForm';
 import useAddToProjectSubCollection from '../utils/useAddToProjectSubCollection';
+import useEditProjectSubCollection from '../utils/useEditProjectSubCollection';
 
 const useStyles = makeStyles((theme) => ({
   newTextForm: {
@@ -17,21 +18,32 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const NewBugForm = ({ setOpen }) => {
+const NewBugForm = ({ setOpen, type, id, currentValues }) => {
   const classes = useStyles();
 
   const [handleInput, input, setInput] = useForm();
   const addToCollection = useAddToProjectSubCollection('Bugs');
+  const editCollection = useEditProjectSubCollection('Bugs');
 
   // set standard data for not that doesnt come from form input
+
   useEffect(() => {
-    setInput({ ...input, date: Date.now(), priority: 'High' });
+    if (!currentValues) {
+      setInput({ ...input, date: Date.now(), priority: 'High' });
+    } else if (currentValues) {
+      setInput(currentValues);
+    }
   }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addToCollection(input);
-    setOpen(false);
+    if (type === 'New') {
+      addToCollection(input);
+      setOpen(false);
+    } else if (type === 'Edit') {
+      editCollection(id, input);
+      setOpen(false);
+    }
   };
 
   return (
@@ -44,6 +56,7 @@ const NewBugForm = ({ setOpen }) => {
         label="Bug Title"
         type="text"
         fullWidth
+        value={input.title}
         onChange={handleInput}
       />
       <TextField
@@ -54,6 +67,7 @@ const NewBugForm = ({ setOpen }) => {
         label="Bug Description"
         type="text"
         fullWidth
+        value={input.desc}
         onChange={handleInput}
       />
       <InputLabel id="priority-label">Severity</InputLabel>
@@ -73,7 +87,7 @@ const NewBugForm = ({ setOpen }) => {
           Cancel
         </Button>
         <Button type="submit" color="primary">
-          Add Bug
+          Save
         </Button>
       </DialogActions>
     </form>
