@@ -1,4 +1,4 @@
-import { Paper, Typography, makeStyles, Divider, Fab } from '@material-ui/core';
+import { makeStyles, Fab } from '@material-ui/core';
 import { useState } from 'react';
 import AddIcon from '@material-ui/icons/Add';
 import Note from './Note';
@@ -7,11 +7,9 @@ import NewNoteForm from '../components/NewNoteForm';
 import useGetProjectSubCollection from '../utils/useGetProjectSubCollection';
 import Spinner from './Spinner';
 import ContentCard from '../containers/ContentCard';
+import CardHeader from './CardHeader';
 
 const useStyles = makeStyles((theme) => ({
-  title: {
-    textAlign: 'center',
-  },
   footerContainer: {
     display: 'flex',
     alignItems: 'center',
@@ -30,10 +28,7 @@ const NotesCard = () => {
 
   return (
     <ContentCard>
-      <Typography className={classes.title} variant="h4">
-        Notes
-      </Typography>
-      <Divider />
+      <CardHeader title="Notes" />
       {!loading ? (
         output.map((note) => (
           <Note

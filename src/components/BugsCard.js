@@ -1,4 +1,4 @@
-import { Paper, Typography, makeStyles, Divider, Fab } from '@material-ui/core';
+import { makeStyles, Fab } from '@material-ui/core';
 import { useState } from 'react';
 import Bug from './Bug';
 import AddIcon from '@material-ui/icons/Add';
@@ -7,11 +7,9 @@ import NewBugForm from '../components/NewBugForm';
 import useGetProjectSubCollection from '../utils/useGetProjectSubCollection';
 import Spinner from './Spinner';
 import ContentCard from '../containers/ContentCard';
+import CardHeader from './CardHeader';
 
 const useStyles = makeStyles((theme) => ({
-  title: {
-    textAlign: 'center',
-  },
   footerContainer: {
     display: 'flex',
     alignItems: 'center',
@@ -26,10 +24,7 @@ const BugsCard = () => {
   const handleOpen = () => setOpen(true);
   return (
     <ContentCard>
-      <Typography className={classes.title} variant="h4">
-        Bugs
-      </Typography>
-      <Divider />
+      <CardHeader title="Bugs" />
       {!loading ? (
         output.map((bug) => (
           <Bug

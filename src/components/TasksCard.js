@@ -1,11 +1,4 @@
-import {
-  Paper,
-  Typography,
-  makeStyles,
-  Divider,
-  List,
-  Fab,
-} from '@material-ui/core';
+import { makeStyles, List, Fab } from '@material-ui/core';
 import { useContext, useState } from 'react';
 import AddIcon from '@material-ui/icons/Add';
 import AuthContext from '../context/AuthContext';
@@ -15,11 +8,9 @@ import useGetProjectSubCollection from '../utils/useGetProjectSubCollection';
 import Task from './Task';
 import Spinner from './Spinner';
 import ContentCard from '../containers/ContentCard';
+import CardHeader from './CardHeader';
 
 const useStyles = makeStyles((theme) => ({
-  title: {
-    textAlign: 'center',
-  },
   footerContainer: {
     display: 'flex',
     alignItems: 'center',
@@ -35,10 +26,7 @@ const TasksCard = () => {
 
   return (
     <ContentCard>
-      <Typography className={classes.title} variant="h4">
-        Tasks
-      </Typography>
-      <Divider />
+      <CardHeader title="Tasks" />
       <List>
         {!loading ? (
           output
