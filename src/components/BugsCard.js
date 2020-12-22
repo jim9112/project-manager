@@ -2,23 +2,23 @@ import { useState } from 'react';
 import { makeStyles } from '@material-ui/core';
 import Bug from './Bug';
 import DialogContainer from '../containers/DialogContainer';
+import CardInnerContainter from '../containers/CardInnerContainer';
 import NewBugForm from '../components/NewBugForm';
 import Spinner from './Spinner';
 import ContentCard from '../containers/ContentCard';
 import CardHeader from './CardHeader';
 import CardFooter from './CardFooter';
 import useGetProjectSubCollection from '../utils/useGetProjectSubCollection';
-import { CropLandscapeSharp } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
-  bugContainer: {
+  scroll: {
     // minHeight: 500,
     // maxHeight: '90%',
     flex: 1,
     overflowY: 'auto',
     marginBottom: '1rem',
   },
-  outer: {
+  inner: {
     maxHeight: '100%',
     display: 'flex',
     flexDirection: 'column',
@@ -32,9 +32,9 @@ const BugsCard = () => {
 
   return (
     <ContentCard>
-      <div className={classes.outer}>
+      <CardInnerContainter>
         <CardHeader title="Bugs" />
-        <div className={classes.bugContainer}>
+        <div className={classes.scroll}>
           {!loading ? (
             output.map((bug) => (
               <Bug
@@ -52,7 +52,7 @@ const BugsCard = () => {
           )}
         </div>
         <CardFooter setOpen={setOpen} />
-      </div>
+      </CardInnerContainter>
       <DialogContainer
         open={open}
         setOpen={setOpen}
