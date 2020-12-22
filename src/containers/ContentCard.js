@@ -1,9 +1,11 @@
 import { Paper, makeStyles } from '@material-ui/core';
-import { useState } from 'react';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    minHeight: 500,
+    // minHeight: 500,
+    // display: 'flex',
+    height: 'calc(100vh - 120px )',
+    // flex: 1,
     width: '100%',
     paddingBottom: '1rem',
   },

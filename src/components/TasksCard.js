@@ -1,4 +1,4 @@
-import { List } from '@material-ui/core';
+import { List, makeStyles } from '@material-ui/core';
 import { useState } from 'react';
 import DialogContainer from '../containers/DialogContainer';
 import NewTaskForm from './NewTaskForm';
@@ -9,14 +9,22 @@ import ContentCard from '../containers/ContentCard';
 import CardHeader from './CardHeader';
 import CardFooter from './CardFooter';
 
+//  might not need this
+const useStyles = makeStyles((theme) => ({
+  root: {
+    // height: '100%',
+  },
+}));
+
 const TasksCard = () => {
+  const classes = useStyles();
   const [open, setOpen] = useState(false);
   const { output, loading } = useGetProjectSubCollection('Tasks');
 
   return (
     <ContentCard>
       <CardHeader title="Tasks" />
-      <List>
+      <List className={classes.root}>
         {!loading ? (
           output
             .sort((x, y) => x.checked - y.checked)
