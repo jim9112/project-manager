@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import Note from './Note';
 import DialogContainer from '../containers/DialogContainer';
+import CardInnerContainter from '../containers/CardInnerContainer';
+import CardScrollContainter from '../containers/CardScrollContainer';
 import NewNoteForm from '../components/NewNoteForm';
 import Spinner from './Spinner';
 import ContentCard from '../containers/ContentCard';
@@ -14,23 +16,27 @@ const NotesCard = () => {
 
   return (
     <ContentCard>
-      <CardHeader title="Notes" />
-      {!loading ? (
-        output.map((note) => (
-          <Note
-            key={note.id}
-            archived={note.archived}
-            date={note.date}
-            title={note.title}
-            content={note.content}
-            id={note.id}
-          />
-        ))
-      ) : (
-        <Spinner />
-      )}
+      <CardInnerContainter>
+        <CardHeader title="Notes" />
+        <CardScrollContainter>
+          {!loading ? (
+            output.map((note) => (
+              <Note
+                key={note.id}
+                archived={note.archived}
+                date={note.date}
+                title={note.title}
+                content={note.content}
+                id={note.id}
+              />
+            ))
+          ) : (
+            <Spinner />
+          )}
+        </CardScrollContainter>
 
-      <CardFooter setOpen={setOpen} />
+        <CardFooter setOpen={setOpen} />
+      </CardInnerContainter>
 
       <DialogContainer
         open={open}
