@@ -7,12 +7,15 @@ import {
   IconButton,
 } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
 import { firestore } from '../firebaseIndex';
 import AuthContext from '../context/AuthContext';
 import UserContext from '../context/UserContext';
 import { useContext, useState } from 'react';
 import useDeleteFromProjectSubCollection from '../utils/useDeleteFromProjectSubCollection';
 import ConfirmationAlert from './ConfirmationAlert';
+import DialogContainer from '../containers/DialogContainer';
+import NewTaskForm from './NewTaskForm';
 
 const useStyles = makeStyles((theme) => ({
   done: {
@@ -26,29 +29,26 @@ const Task = ({ task }) => {
   const { currentProject } = useContext(UserContext);
   const removeItem = useDeleteFromProjectSubCollection();
   const [open, setOpen] = useState(false);
+  const [editOpen, setEditOpen] = useState(false);
 
   // line through to do items when checked
   const onCheck = (task) => {
+    const dbLocation = firestore
+      .collection('users')
+      .doc(user.uid)
+      .collection('Projects')
+      .doc(currentProject)
+      .collection('Tasks')
+      .doc(task.id);
+
     if (!task.checked) {
-      firestore
-        .collection('users')
-        .doc(user.uid)
-        .collection('Projects')
-        .doc(currentProject)
-        .collection('Tasks')
-        .doc(task.id)
+      dbLocation
         .update({
           checked: true,
         })
         .catch((err) => console.log(err));
     } else if (task.checked) {
-      firestore
-        .collection('users')
-        .doc(user.uid)
-        .collection('Projects')
-        .doc(currentProject)
-        .collection('Tasks')
-        .doc(task.id)
+      dbLocation
         .update({
           checked: false,
         })
@@ -84,6 +84,13 @@ const Task = ({ task }) => {
         onClick={handleClick}>
         <DeleteIcon />
       </IconButton>
+      <IconButton
+        aria-label="delete"
+        color="secondary"
+        edge="end"
+        onClick={() => setEditOpen(true)}>
+        <EditIcon />
+      </IconButton>
       <ConfirmationAlert
         open={open}
         setOpen={setOpen}
@@ -92,6 +99,19 @@ const Task = ({ task }) => {
         action={removeItem}
         param1={'Tasks'}
         param2={task.id}
+      />
+      <DialogContainer
+        open={editOpen}
+        setOpen={setEditOpen}
+        title="Edit Task"
+        type={'Edit'}
+        currentValues={{
+          checked: task.checked,
+          task: task.task,
+          date: task.date,
+        }}
+        id={task.id}
+        NewComponentForm={NewTaskForm}
       />
     </ListItem>
   );

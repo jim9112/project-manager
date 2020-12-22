@@ -32,6 +32,7 @@ const TasksCard = () => {
         open={open}
         setOpen={setOpen}
         title="New Task"
+        type="New"
         NewComponentForm={NewTaskForm}
       />
     </ContentCard>

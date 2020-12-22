@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 import useForm from '../utils/useForm';
 
 import useAddToProjectSubCollection from '../utils/useAddToProjectSubCollection';
+import useEditProjectSubCollection from '../utils/useEditProjectSubCollection';
 
 const useStyles = makeStyles((theme) => ({
   newTextForm: {
@@ -15,20 +16,30 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const NewTaskForm = ({ setOpen }) => {
+const NewTaskForm = ({ setOpen, type, id, currentValues }) => {
   const classes = useStyles();
   const [handleInput, input, setInput] = useForm();
   const addToCollection = useAddToProjectSubCollection('Tasks');
-
+  const editCollection = useEditProjectSubCollection('Tasks');
   // set standard data for not that doesnt come from form input
+
   useEffect(() => {
-    setInput({ ...input, checked: false, date: Date.now() });
+    if (!currentValues) {
+      setInput({ ...input, checked: false, date: Date.now() });
+    } else if (currentValues) {
+      setInput(currentValues);
+    }
   }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addToCollection(input);
-    setOpen(false);
+    if (type === 'New') {
+      addToCollection(input);
+      setOpen(false);
+    } else if (type === 'Edit') {
+      editCollection(id, input);
+      setOpen(false);
+    }
   };
 
   return (
@@ -41,6 +52,8 @@ const NewTaskForm = ({ setOpen }) => {
         label="New Task"
         type="text"
         fullWidth
+        multiline
+        value={input.task}
         onChange={handleInput}
       />
       <DialogActions>
