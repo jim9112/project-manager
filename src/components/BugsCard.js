@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { makeStyles } from '@material-ui/core';
 import Bug from './Bug';
 import DialogContainer from '../containers/DialogContainer';
 import CardInnerContainter from '../containers/CardInnerContainer';
+import CardScrollContainter from '../containers/CardScrollContainer';
 import NewBugForm from '../components/NewBugForm';
 import Spinner from './Spinner';
 import ContentCard from '../containers/ContentCard';
@@ -10,23 +10,7 @@ import CardHeader from './CardHeader';
 import CardFooter from './CardFooter';
 import useGetProjectSubCollection from '../utils/useGetProjectSubCollection';
 
-const useStyles = makeStyles((theme) => ({
-  scroll: {
-    // minHeight: 500,
-    // maxHeight: '90%',
-    flex: 1,
-    overflowY: 'auto',
-    marginBottom: '1rem',
-  },
-  inner: {
-    maxHeight: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-  },
-}));
-
 const BugsCard = () => {
-  const classes = useStyles();
   const [open, setOpen] = useState(false);
   const { output, loading } = useGetProjectSubCollection('Bugs');
 
@@ -34,7 +18,7 @@ const BugsCard = () => {
     <ContentCard>
       <CardInnerContainter>
         <CardHeader title="Bugs" />
-        <div className={classes.scroll}>
+        <CardScrollContainter>
           {!loading ? (
             output.map((bug) => (
               <Bug
@@ -50,7 +34,7 @@ const BugsCard = () => {
           ) : (
             <Spinner />
           )}
-        </div>
+        </CardScrollContainter>
         <CardFooter setOpen={setOpen} />
       </CardInnerContainter>
       <DialogContainer

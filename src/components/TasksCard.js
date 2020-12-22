@@ -1,6 +1,8 @@
-import { List, makeStyles } from '@material-ui/core';
+import { List } from '@material-ui/core';
 import { useState } from 'react';
 import DialogContainer from '../containers/DialogContainer';
+import CardInnerContainter from '../containers/CardInnerContainer';
+import CardScrollContainter from '../containers/CardScrollContainer';
 import NewTaskForm from './NewTaskForm';
 import useGetProjectSubCollection from '../utils/useGetProjectSubCollection';
 import Task from './Task';
@@ -9,33 +11,29 @@ import ContentCard from '../containers/ContentCard';
 import CardHeader from './CardHeader';
 import CardFooter from './CardFooter';
 
-//  might not need this
-const useStyles = makeStyles((theme) => ({
-  root: {
-    // height: '100%',
-  },
-}));
-
 const TasksCard = () => {
-  const classes = useStyles();
   const [open, setOpen] = useState(false);
   const { output, loading } = useGetProjectSubCollection('Tasks');
 
   return (
     <ContentCard>
-      <CardHeader title="Tasks" />
-      <List className={classes.root}>
-        {!loading ? (
-          output
-            .sort((x, y) => x.checked - y.checked)
-            .map((task) => {
-              return <Task key={task.id} task={task} />;
-            })
-        ) : (
-          <Spinner />
-        )}
-      </List>
-      <CardFooter setOpen={setOpen} />
+      <CardInnerContainter>
+        <CardHeader title="Tasks" />
+        <CardScrollContainter>
+          <List>
+            {!loading ? (
+              output
+                .sort((x, y) => x.checked - y.checked)
+                .map((task) => {
+                  return <Task key={task.id} task={task} />;
+                })
+            ) : (
+              <Spinner />
+            )}
+          </List>
+        </CardScrollContainter>
+        <CardFooter setOpen={setOpen} />
+      </CardInnerContainter>
       <DialogContainer
         open={open}
         setOpen={setOpen}
