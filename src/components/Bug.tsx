@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   Typography,
   makeStyles,
@@ -26,7 +27,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Bug = ({ title, desc, priority, date, id }) => {
+interface Props {
+  title: string;
+  desc: string;
+  priority: string;
+  date: number;
+  id: string;
+}
+
+const Bug: React.FC<Props> = ({ title, desc, priority, date, id }) => {
   const classes = useStyles();
 
   const [open, setOpen] = useState(false);
@@ -53,7 +62,7 @@ const Bug = ({ title, desc, priority, date, id }) => {
         }
       />
       <CardContent>
-        <Typography varient="body">{desc}</Typography>
+        <Typography variant="body1">{desc}</Typography>
       </CardContent>
       <ConfirmationAlert
         open={open}
