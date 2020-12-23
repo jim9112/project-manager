@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   Button,
   Dialog,
@@ -7,7 +8,17 @@ import {
   DialogTitle,
 } from '@material-ui/core';
 
-const ConfirmationAlert = ({
+interface Props {
+  title: string;
+  message: string;
+  open: boolean;
+  setOpen: (open: boolean) => void;
+  action: (param1: string, param2: string) => void;
+  param1: string;
+  param2: string;
+}
+
+const ConfirmationAlert: React.FC<Props> = ({
   title,
   message,
   open,
