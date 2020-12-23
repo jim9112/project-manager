@@ -38,8 +38,8 @@ interface Props {
 const Bug: React.FC<Props> = ({ title, desc, priority, date, id }) => {
   const classes = useStyles();
 
-  const [open, setOpen] = useState(false);
-  const [editOpen, setEditOpen] = useState(false);
+  const [open, setOpen] = useState<boolean>(false);
+  const [editOpen, setEditOpen] = useState<boolean>(false);
   const removeItem = useDeleteFromProjectSubCollection();
 
   const displayDate = new Date(date).toLocaleString();
