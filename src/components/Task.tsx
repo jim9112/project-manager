@@ -11,7 +11,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import { firestore } from '../firebaseIndex';
 import AuthContext from '../context/AuthContext';
 import UserContext from '../context/UserContext';
-import { useContext, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import useDeleteFromProjectSubCollection from '../utils/useDeleteFromProjectSubCollection';
 import ConfirmationAlert from './ConfirmationAlert';
 import DialogContainer from '../containers/DialogContainer';
@@ -23,16 +23,25 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Task = ({ task }) => {
+interface Props {
+  task: {
+    checked: boolean;
+    id: string;
+    task: string;
+    date: number;
+  };
+}
+
+const Task: React.FC<Props> = ({ task }) => {
   const classes = useStyles();
-  const { user } = useContext(AuthContext);
-  const { currentProject } = useContext(UserContext);
+  const { user }: any = useContext(AuthContext);
+  const { currentProject }: any = useContext(UserContext);
   const removeItem = useDeleteFromProjectSubCollection();
-  const [open, setOpen] = useState(false);
-  const [editOpen, setEditOpen] = useState(false);
+  const [open, setOpen] = useState<boolean>(false);
+  const [editOpen, setEditOpen] = useState<boolean>(false);
 
   // line through to do items when checked
-  const onCheck = (task) => {
+  const onCheck = () => {
     const dbLocation = firestore
       .collection('users')
       .doc(user.uid)
@@ -57,7 +66,7 @@ const Task = ({ task }) => {
   };
 
   // handle clicking the delete button
-  const handleClick = (e) => {
+  const handleClick = () => {
     if (task.checked) {
       removeItem('Tasks', task.id);
     } else if (!task.checked) {
@@ -68,11 +77,7 @@ const Task = ({ task }) => {
   return (
     <ListItem divider={true}>
       <ListItemIcon>
-        <Checkbox
-          checked={task.checked}
-          onChange={() => onCheck(task)}
-          color="primary"
-        />
+        <Checkbox checked={task.checked} onChange={onCheck} color="primary" />
       </ListItemIcon>
       <ListItemText className={task.checked ? classes.done : ''}>
         {task.task}

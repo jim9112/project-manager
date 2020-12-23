@@ -23,7 +23,6 @@ const BugsCard = () => {
             output.map((bug) => (
               <Bug
                 key={bug.id}
-                archived={bug.archived}
                 date={bug.date}
                 title={bug.title}
                 desc={bug.desc}
