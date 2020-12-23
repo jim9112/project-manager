@@ -1,3 +1,4 @@
+import React from 'react';
 import { Typography, makeStyles, Divider } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
@@ -6,7 +7,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CardHeader = ({ title }) => {
+interface Props {
+  title: string;
+}
+
+const CardHeader: React.FC<Props> = ({ title }) => {
   const classes = useStyles();
   return (
     <>
