@@ -8,7 +8,7 @@ import {
 } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import DialogContainer from '../containers/DialogContainer';
 import useDeleteFromProjectSubCollection from '../utils/useDeleteFromProjectSubCollection';
 import ConfirmationAlert from './ConfirmationAlert';
@@ -20,10 +20,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Note = ({ date, title, content, id }) => {
+interface Props {
+  date: number;
+  title: string;
+  content: string;
+  id: string;
+}
+
+const Note: React.FC<Props> = ({ date, title, content, id }) => {
   const classes = useStyles();
-  const [open, setOpen] = useState(false);
-  const [editOpen, setEditOpen] = useState(false);
+  const [open, setOpen] = useState<boolean>(false);
+  const [editOpen, setEditOpen] = useState<boolean>(false);
   const removeItem = useDeleteFromProjectSubCollection();
 
   const displayDate = new Date(date).toLocaleString();
@@ -44,7 +51,7 @@ const Note = ({ date, title, content, id }) => {
         }
       />
       <CardContent>
-        <Typography varient="body">{content}</Typography>
+        <Typography variant="body1">{content}</Typography>
       </CardContent>
       <ConfirmationAlert
         open={open}
