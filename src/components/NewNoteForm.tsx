@@ -4,7 +4,7 @@ import {
   DialogActions,
   Button,
 } from '@material-ui/core';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import useForm from '../utils/useForm';
 import useAddToProjectSubCollection from '../utils/useAddToProjectSubCollection';
 import useEditProjectSubCollection from '../utils/useEditProjectSubCollection';
@@ -15,13 +15,26 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const NewNoteForm = ({ setOpen, type, id, currentValues }) => {
+interface Props {
+  setOpen: (open: boolean) => null;
+  type: 'New' | 'Edit';
+  id: string;
+  currentValues: {};
+}
+
+interface Input {
+  title?: string;
+  content?: string;
+}
+
+const NewNoteForm: React.FC<Props> = ({ setOpen, type, id, currentValues }) => {
   const classes = useStyles();
 
   const { handleInput, input, setInput } = useForm();
   const addToCollection = useAddToProjectSubCollection('Notes');
   const editCollection = useEditProjectSubCollection('Notes');
 
+  const { title, content }: Input = input;
   // set standard data for not that doesnt come from form input || add current value on edit
   useEffect(() => {
     if (!currentValues) {
@@ -31,7 +44,7 @@ const NewNoteForm = ({ setOpen, type, id, currentValues }) => {
     }
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
     if (type === 'New') {
       addToCollection(input);
@@ -52,7 +65,7 @@ const NewNoteForm = ({ setOpen, type, id, currentValues }) => {
         label="Note Title"
         type="text"
         fullWidth
-        value={input.title}
+        value={title}
         onChange={handleInput}
       />
       <TextField
@@ -63,7 +76,7 @@ const NewNoteForm = ({ setOpen, type, id, currentValues }) => {
         label="Note Content"
         type="text"
         fullWidth
-        value={input.content}
+        value={content}
         onChange={handleInput}
       />
       <DialogActions>
