@@ -4,7 +4,7 @@ import {
   DialogActions,
   Button,
 } from '@material-ui/core';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import useForm from '../utils/useForm';
 
 import useAddToProjectSubCollection from '../utils/useAddToProjectSubCollection';
@@ -16,13 +16,26 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const NewTaskForm = ({ setOpen, type, id, currentValues }) => {
+interface Props {
+  setOpen: (open: boolean) => void;
+  type: 'New' | 'Edit';
+  id: string;
+  currentValues: {};
+}
+
+interface Input {
+  task?: string;
+}
+
+const NewTaskForm: React.FC<Props> = ({ setOpen, type, id, currentValues }) => {
   const classes = useStyles();
-  const [handleInput, input, setInput] = useForm();
+  const { handleInput, input, setInput } = useForm();
   const addToCollection = useAddToProjectSubCollection('Tasks');
   const editCollection = useEditProjectSubCollection('Tasks');
-  // set standard data for not that doesnt come from form input
 
+  const { task }: Input = input;
+
+  // set standard data for not that doesnt come from form input
   useEffect(() => {
     if (!currentValues) {
       setInput({ ...input, checked: false, date: Date.now() });
@@ -31,7 +44,7 @@ const NewTaskForm = ({ setOpen, type, id, currentValues }) => {
     }
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
     if (type === 'New') {
       addToCollection(input);
@@ -53,7 +66,7 @@ const NewTaskForm = ({ setOpen, type, id, currentValues }) => {
         type="text"
         fullWidth
         multiline
-        value={input.task}
+        value={task}
         onChange={handleInput}
       />
       <DialogActions>
@@ -61,7 +74,7 @@ const NewTaskForm = ({ setOpen, type, id, currentValues }) => {
           Cancel
         </Button>
         <Button type="submit" color="primary">
-          Add Task
+          Save
         </Button>
       </DialogActions>
     </form>
