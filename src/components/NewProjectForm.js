@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const NewProjectForm = ({ setOpen }) => {
-  const [handleInput, input] = useForm();
+  const { handleInput, input } = useForm();
   const [addToCollection] = useWriteToDatabase();
 
   const classes = useStyles();

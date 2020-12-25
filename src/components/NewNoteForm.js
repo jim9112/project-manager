@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
 const NewNoteForm = ({ setOpen, type, id, currentValues }) => {
   const classes = useStyles();
 
-  const [handleInput, input, setInput] = useForm();
+  const { handleInput, input, setInput } = useForm();
   const addToCollection = useAddToProjectSubCollection('Notes');
   const editCollection = useEditProjectSubCollection('Notes');
 

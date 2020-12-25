@@ -7,7 +7,7 @@ import {
   Select,
   MenuItem,
 } from '@material-ui/core';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import useForm from '../utils/useForm';
 import useAddToProjectSubCollection from '../utils/useAddToProjectSubCollection';
 import useEditProjectSubCollection from '../utils/useEditProjectSubCollection';
@@ -18,12 +18,27 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const NewBugForm = ({ setOpen, type, id, currentValues }) => {
+interface Props {
+  setOpen: (open: boolean) => void;
+  type: 'New' | 'Edit';
+  id: string;
+  currentValues: {};
+}
+
+interface Input {
+  title?: string;
+  desc?: string;
+  priority?: string;
+}
+
+const NewBugForm: React.FC<Props> = ({ setOpen, type, id, currentValues }) => {
   const classes = useStyles();
 
-  const [handleInput, input, setInput] = useForm();
+  const { handleInput, input, setInput } = useForm();
   const addToCollection = useAddToProjectSubCollection('Bugs');
   const editCollection = useEditProjectSubCollection('Bugs');
+
+  const { title, desc, priority }: Input = input;
 
   // set standard data for not that doesnt come from form input
 
@@ -35,7 +50,7 @@ const NewBugForm = ({ setOpen, type, id, currentValues }) => {
     }
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
     if (type === 'New') {
       addToCollection(input);
@@ -56,7 +71,7 @@ const NewBugForm = ({ setOpen, type, id, currentValues }) => {
         label="Bug Title"
         type="text"
         fullWidth
-        value={input.title}
+        value={title}
         onChange={handleInput}
       />
       <TextField
@@ -67,7 +82,7 @@ const NewBugForm = ({ setOpen, type, id, currentValues }) => {
         label="Bug Description"
         type="text"
         fullWidth
-        value={input.desc}
+        value={desc}
         onChange={handleInput}
       />
       <InputLabel id="priority-label">Severity</InputLabel>
@@ -76,7 +91,7 @@ const NewBugForm = ({ setOpen, type, id, currentValues }) => {
         margin="dense"
         labelId="priority-label"
         id="priority"
-        value={input.priority}
+        value={priority}
         onChange={(e) => handleInput(e, 'priority')}>
         <MenuItem value="High">High</MenuItem>
         <MenuItem value="Medium">Medium</MenuItem>
