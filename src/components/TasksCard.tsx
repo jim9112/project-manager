@@ -11,6 +11,17 @@ import ContentCard from '../containers/ContentCard';
 import CardHeader from './CardHeader';
 import CardFooter from './CardFooter';
 
+interface X {
+  checked: any;
+}
+
+interface ITask {
+  id: string;
+  task: string;
+  checked: boolean;
+  date: number;
+}
+
 const TasksCard = () => {
   const [open, setOpen] = useState(false);
   const { output, loading } = useGetProjectSubCollection('Tasks');
@@ -23,8 +34,8 @@ const TasksCard = () => {
           <List>
             {!loading ? (
               output
-                .sort((x, y) => x.checked - y.checked)
-                .map((task) => {
+                .sort((x: X, y: X) => x.checked - y.checked)
+                .map((task: ITask) => {
                   return <Task key={task.id} task={task} />;
                 })
             ) : (
@@ -40,6 +51,8 @@ const TasksCard = () => {
         title="New Task"
         type="New"
         NewComponentForm={NewTaskForm}
+        id={null}
+        currentValues={null}
       />
     </ContentCard>
   );
