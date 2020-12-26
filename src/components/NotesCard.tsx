@@ -1,17 +1,24 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Note from './Note';
 import DialogContainer from '../containers/DialogContainer';
 import CardInnerContainter from '../containers/CardInnerContainer';
 import CardScrollContainter from '../containers/CardScrollContainer';
-import NewNoteForm from '../components/NewNoteForm';
+import NewNoteForm from './NewNoteForm';
 import Spinner from './Spinner';
 import ContentCard from '../containers/ContentCard';
 import CardHeader from './CardHeader';
 import CardFooter from './CardFooter';
 import useGetProjectSubCollection from '../utils/useGetProjectSubCollection';
 
-const NotesCard = () => {
-  const [open, setOpen] = useState(false);
+interface Note {
+  id: string;
+  date: number;
+  title: string;
+  content: string;
+}
+
+const NotesCard: React.FC = () => {
+  const [open, setOpen] = useState<boolean>(false);
   const { output, loading } = useGetProjectSubCollection('Notes');
 
   return (
@@ -20,10 +27,9 @@ const NotesCard = () => {
         <CardHeader title="Notes" />
         <CardScrollContainter>
           {!loading ? (
-            output.map((note) => (
+            output.map((note: Note) => (
               <Note
                 key={note.id}
-                archived={note.archived}
                 date={note.date}
                 title={note.title}
                 content={note.content}
@@ -44,6 +50,8 @@ const NotesCard = () => {
         title="New Note"
         type={'New'}
         NewComponentForm={NewNoteForm}
+        id={null}
+        currentValues={null}
       />
     </ContentCard>
   );

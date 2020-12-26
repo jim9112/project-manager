@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   makeStyles,
   TextField,
@@ -12,13 +13,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const NewProjectForm = ({ setOpen }) => {
+interface Props {
+  setOpen: (open: boolean) => void;
+}
+
+const NewProjectForm: React.FC<Props> = ({ setOpen }) => {
   const { handleInput, input } = useForm();
   const [addToCollection] = useWriteToDatabase();
 
   const classes = useStyles();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
     addToCollection(input);
     setOpen(false);
