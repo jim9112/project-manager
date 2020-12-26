@@ -8,11 +8,20 @@ import {
   Divider,
   Typography,
 } from '@material-ui/core';
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 import UserContext from '../context/UserContext';
 
-const ProjectCard = ({ name, desc, projKey, history }) => {
-  const { setCurrentProject } = useContext(UserContext);
+interface Props {
+  name: string;
+  desc: string;
+  projKey: string;
+  history: {
+    push: any;
+  };
+}
+
+const ProjectCard: React.FC<Props> = ({ name, desc, projKey, history }) => {
+  const { setCurrentProject }: any = useContext(UserContext);
 
   const onClick = () => {
     setCurrentProject(projKey);
