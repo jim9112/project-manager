@@ -51,8 +51,6 @@ const TasksCard = () => {
         title="New Task"
         type="New"
         NewComponentForm={NewTaskForm}
-        id={null}
-        currentValues={null}
       />
     </ContentCard>
   );

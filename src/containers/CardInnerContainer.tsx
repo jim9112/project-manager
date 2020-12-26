@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CardInnerContainter = ({ children }) => {
+const CardInnerContainter = ({ children }: any) => {
   const classes = useStyles();
   return <div className={classes.inner}>{children}</div>;
 };

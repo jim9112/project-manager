@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CardScrollContainter = ({ children }) => {
+const CardScrollContainter = ({ children }: any) => {
   const classes = useStyles();
   return <div className={classes.scroll}>{children}</div>;
 };

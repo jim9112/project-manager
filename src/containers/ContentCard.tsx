@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ContentCard = ({ children }) => {
+const ContentCard = ({ children }: any) => {
   const classes = useStyles();
 
   return <Paper className={classes.paper}>{children}</Paper>;

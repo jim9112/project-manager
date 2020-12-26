@@ -6,7 +6,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const DialogContainer = ({
+interface Props {
+  open: boolean;
+  setOpen: (open: boolean) => void;
+  title: string;
+  NewComponentForm: any;
+  type: string;
+  id?: string;
+  currentValues?: {};
+}
+
+const DialogContainer: React.FC<Props> = ({
   open,
   setOpen,
   title,
@@ -18,7 +28,6 @@ const DialogContainer = ({
   const classes = useStyles();
   return (
     <Dialog
-      className={classes.root}
       open={open}
       onClose={() => setOpen(false)}
       aria-labelledby="form-dialog-title">

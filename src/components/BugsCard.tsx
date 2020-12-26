@@ -50,8 +50,6 @@ const BugsCard: React.FC = () => {
         title="New Bug"
         type={'New'}
         NewComponentForm={NewBugForm}
-        id={null}
-        currentValues={null}
       />
     </ContentCard>
   );

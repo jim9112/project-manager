@@ -50,8 +50,6 @@ const NotesCard: React.FC = () => {
         title="New Note"
         type={'New'}
         NewComponentForm={NewNoteForm}
-        id={null}
-        currentValues={null}
       />
     </ContentCard>
   );
