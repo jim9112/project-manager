@@ -10,7 +10,7 @@ import CardHeader from './CardHeader';
 import CardFooter from './CardFooter';
 import useGetProjectSubCollection from '../utils/useGetProjectSubCollection';
 
-interface Note {
+interface INote {
   id: string;
   date: number;
   title: string;
@@ -27,7 +27,7 @@ const NotesCard: React.FC = () => {
         <CardHeader title="Notes" />
         <CardScrollContainter>
           {!loading ? (
-            output.map((note: Note) => (
+            output.map((note: INote) => (
               <Note
                 key={note.id}
                 date={note.date}
