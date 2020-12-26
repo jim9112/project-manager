@@ -16,7 +16,7 @@ interface Props {
   desc: string;
   projKey: string;
   history: {
-    push: any;
+    push: (location: string) => void;
   };
 }
 

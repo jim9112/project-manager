@@ -67,12 +67,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SearchAppBar({ history }) {
+interface Props {
+  history: {
+    push: (location: string) => void;
+  };
+}
+
+const SearchAppBar: React.FC<Props> = ({ history }) => {
   const classes = useStyles();
 
-  const [anchorEl, setAnchorEl] = useState(null);
+  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const [handleLogOut] = useLogOut();
-  const handleClick = (event) => {
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -128,4 +134,6 @@ export default function SearchAppBar({ history }) {
       </AppBar>
     </div>
   );
-}
+};
+
+export default SearchAppBar;

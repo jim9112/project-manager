@@ -23,7 +23,7 @@ interface ITask {
 }
 
 const TasksCard = () => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState<boolean>(false);
   const { output, loading } = useGetProjectSubCollection('Tasks');
 
   return (
