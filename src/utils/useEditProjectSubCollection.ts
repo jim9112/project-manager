@@ -3,9 +3,9 @@ import AuthContext from '../context/AuthContext';
 import UserContext from '../context/UserContext';
 import { firestore } from '../firebaseIndex';
 
-const useEditProjectSubCollection = (type) => {
-  const { user } = useContext(AuthContext);
-  const { currentProject } = useContext(UserContext);
+const useEditProjectSubCollection = (type: string) => {
+  const { user }: any = useContext(AuthContext);
+  const { currentProject }: any = useContext(UserContext);
 
   const dbLocation = firestore
     .collection('users')
@@ -13,7 +13,7 @@ const useEditProjectSubCollection = (type) => {
     .collection('Projects')
     .doc(currentProject)
     .collection(type);
-  const editCollection = (id, data) => {
+  const editCollection = (id: string, data: {}) => {
     dbLocation
       .doc(id)
       .set(data)

@@ -92,7 +92,9 @@ const NewBugForm: React.FC<Props> = ({ setOpen, type, id, currentValues }) => {
         labelId="priority-label"
         id="priority"
         value={priority}
-        onChange={(e) => handleInput(e, 'priority')}>
+        onChange={(e: React.ChangeEvent<{ value: unknown }>) => {
+          setInput({ ...input, priority: e.target.value as string });
+        }}>
         <MenuItem value="High">High</MenuItem>
         <MenuItem value="Medium">Medium</MenuItem>
         <MenuItem value="Low">Low</MenuItem>

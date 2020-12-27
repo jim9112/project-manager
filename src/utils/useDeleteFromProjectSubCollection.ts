@@ -4,10 +4,10 @@ import UserContext from '../context/UserContext';
 import { firestore } from '../firebaseIndex';
 
 const useDeleteFromProjectSubCollection = () => {
-  const { user } = useContext(AuthContext);
-  const { currentProject } = useContext(UserContext);
+  const { user }: any = useContext(AuthContext);
+  const { currentProject }: any = useContext(UserContext);
 
-  const removeItem = (type, item) => {
+  const removeItem = (type: string, item: string) => {
     firestore
       .collection('users')
       .doc(user.uid)
@@ -16,7 +16,7 @@ const useDeleteFromProjectSubCollection = () => {
       .collection(type)
       .doc(item)
       .delete()
-      .catch((error) => console.log(error));
+      .catch((error) => console.error(error));
   };
   return removeItem;
 };

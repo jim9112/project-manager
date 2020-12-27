@@ -2,11 +2,12 @@ import { useState } from 'react';
 
 const useForm = () => {
   const [input, setInput] = useState({});
-  const handleInput = (e, name) => {
-    if (!e.target.id) {
-      setInput({ ...input, [name]: e.target.value });
+  const handleInput = (e: React.ChangeEvent) => {
+    const T = e.target as HTMLInputElement;
+    if (!T.id) {
+      console.log(T);
     } else {
-      setInput({ ...input, [e.target.id]: e.target.value });
+      setInput({ ...input, [T.id]: T.value });
     }
   };
 
