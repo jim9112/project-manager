@@ -3,9 +3,9 @@ import AuthContext from '../context/AuthContext';
 import { firestore } from '../firebaseIndex';
 
 function useGetAndDisplayProjects() {
-  const [projects, setProjects] = useState([]);
+  const [projects, setProjects] = useState<any[] | null>(null);
   const [loading, setLoading] = useState(true);
-  const { user } = useContext(AuthContext);
+  const { user }: any = useContext(AuthContext);
 
   useEffect(() => {
     if (user) {
