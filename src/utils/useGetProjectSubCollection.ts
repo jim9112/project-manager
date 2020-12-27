@@ -3,11 +3,11 @@ import AuthContext from '../context/AuthContext';
 import UserContext from '../context/UserContext';
 import { firestore } from '../firebaseIndex';
 
-function useGetProjectSubCollection(type) {
-  const [output, setOutput] = useState([]);
+function useGetProjectSubCollection(type: string) {
+  const [output, setOutput] = useState<any[] | null>(null);
   const [loading, setLoading] = useState(true);
-  const { user } = useContext(AuthContext);
-  const { currentProject } = useContext(UserContext);
+  const { user }: any = useContext(AuthContext);
+  const { currentProject }: any = useContext(UserContext);
 
   useEffect(() => {
     if (user && currentProject) {
