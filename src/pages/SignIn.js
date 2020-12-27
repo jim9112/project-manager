@@ -28,13 +28,16 @@ const SignUp = ({ history }) => {
   const classes = useStyles();
   const { user } = useContext(AuthContext);
   const [handleSignIn] = useSignIn();
+
   useEffect(() => {
     if (user) history.push('/home');
   }, [user]);
+
   const onSubmit = (e) => {
     e.preventDefault();
     console.log('Submitted');
   };
+
   return (
     <div className={classes.root}>
       <Grid container align="center">
@@ -53,7 +56,7 @@ const SignUp = ({ history }) => {
               type="text"
               color="secondary"
               fullWidth
-              onClick={() => handleSignIn(signInWithGithub, history)}>
+              onClick={() => handleSignIn(signInWithGithub)}>
               Sign in with GitHub
             </Button>
             <Typography variant="body1">Dont have an account yet?</Typography>{' '}

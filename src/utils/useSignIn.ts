@@ -3,7 +3,7 @@ import { firestore } from '../firebaseIndex';
 import AuthContext from '../context/AuthContext';
 
 const useSignIn = () => {
-  const { user } = useContext(AuthContext);
+  const { user }: any = useContext(AuthContext);
 
   // check to see if user exsists, if not then create user
   const checkForProfile = () => {
@@ -21,7 +21,7 @@ const useSignIn = () => {
     }
   };
 
-  const handleSignIn = (signInMethod, history) => {
+  const handleSignIn = (signInMethod: () => void) => {
     signInMethod();
     checkForProfile();
   };
