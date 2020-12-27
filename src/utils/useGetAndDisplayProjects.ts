@@ -3,7 +3,7 @@ import AuthContext from '../context/AuthContext';
 import { firestore } from '../firebaseIndex';
 
 function useGetAndDisplayProjects() {
-  const [projects, setProjects] = useState<any[] | null>(null);
+  const [projects, setProjects] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const { user }: any = useContext(AuthContext);
 

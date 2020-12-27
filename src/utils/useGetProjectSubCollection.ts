@@ -4,7 +4,7 @@ import UserContext from '../context/UserContext';
 import { firestore } from '../firebaseIndex';
 
 function useGetProjectSubCollection(type: string) {
-  const [output, setOutput] = useState<any[] | null>(null);
+  const [output, setOutput] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const { user }: any = useContext(AuthContext);
   const { currentProject }: any = useContext(UserContext);
