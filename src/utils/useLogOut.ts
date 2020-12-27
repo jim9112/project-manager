@@ -3,8 +3,9 @@ import { auth } from '../firebaseIndex';
 import AuthContext from '../context/AuthContext';
 
 const useLogOut = () => {
-  const { setUser } = useContext(AuthContext);
-  const handleLogOut = (history) => {
+  const { setUser }: any = useContext(AuthContext);
+
+  const handleLogOut = (history: { push: (loaction: string) => void }) => {
     auth.signOut();
     setUser(null);
     history.push('/');
