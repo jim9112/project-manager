@@ -2,7 +2,7 @@ import React, { createContext, useState } from 'react';
 import useGetProjectSubCollection from '../utils/useGetProjectSubCollection';
 const UserContext = createContext({});
 
-const UserContextProvider = ({ children }) => {
+const UserContextProvider = ({ children }: any) => {
   const [currentProject, setCurrentProject] = useState(null);
   const {
     output: taskOutput,

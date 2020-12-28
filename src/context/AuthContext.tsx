@@ -1,10 +1,11 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { auth, firestore } from '../firebaseIndex';
-const AuthContext = createContext({});
 
 interface AuthInterface {
   uid: string;
 }
+
+const AuthContext = createContext<AuthInterface | {}>({});
 
 const AuthContextProvider = ({ children }: any) => {
   const [user, setUser] = useState<AuthInterface | null>(null);
@@ -21,11 +22,12 @@ const AuthContextProvider = ({ children }: any) => {
       .get()
       .then((doc) => {
         if (doc.exists) {
-          console.log('its there');
+          console.log('Its there!!');
         } else {
           firestore.collection('users').doc(user.uid).set({});
         }
-      });
+      })
+      .catch((err) => console.error(err));
   }
   const context = {
     user,
