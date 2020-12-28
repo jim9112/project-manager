@@ -11,7 +11,7 @@ interface Props {
   setOpen: (open: boolean) => void;
   title: string;
   NewComponentForm: any;
-  type: string;
+  type?: string;
   id?: string;
   currentValues?: {};
 }

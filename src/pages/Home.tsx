@@ -18,7 +18,12 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
   },
 }));
-function Home({ history }) {
+
+interface Props {
+  history: { push: (location: string) => void };
+}
+
+const Home: React.FC<Props> = ({ history }) => {
   const classes = useStyles();
   const { projects, loading } = useGetAndDisplayProjects();
   const [open, setOpen] = useState(false);
@@ -61,6 +66,6 @@ function Home({ history }) {
       />
     </>
   );
-}
+};
 
 export default Home;

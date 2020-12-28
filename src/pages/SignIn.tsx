@@ -18,30 +18,35 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     maxWidth: 500,
+    textAlign: 'center',
   },
   form: {
     padding: '1rem',
   },
 }));
 
-const SignUp = ({ history }) => {
+interface Props {
+  history: { push: (location: string) => void };
+}
+
+const SignUp: React.FC<Props> = ({ history }) => {
   const classes = useStyles();
-  const { user } = useContext(AuthContext);
+  const { user }: any = useContext(AuthContext);
   const [handleSignIn] = useSignIn();
 
   useEffect(() => {
     if (user) history.push('/home');
   }, [user]);
 
-  const onSubmit = (e) => {
+  const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Submitted');
   };
 
   return (
     <div className={classes.root}>
-      <Grid container align="center">
-        <Grid item xs={12}>
+      <Grid container alignContent="center" justify="center" component="div">
+        <Grid item xs={12} sm={8} md={4}>
           <Paper className={classes.paper}>
             <Typography variant="h4"> Sign In </Typography>
             <form className={classes.form} onSubmit={onSubmit}>
@@ -53,7 +58,8 @@ const SignUp = ({ history }) => {
             </form>
             <Typography variant="body1">or</Typography>
             <Button
-              type="text"
+              variant="contained"
+              type="button"
               color="secondary"
               fullWidth
               onClick={() => handleSignIn(signInWithGithub)}>
