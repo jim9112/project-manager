@@ -11,7 +11,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const TodayPage = ({ history }) => {
+interface Props {
+  history: { push: (location: string) => void };
+}
+
+const TodayPage: React.FC<Props> = ({ history }) => {
   const classes = useStyles();
 
   return (
