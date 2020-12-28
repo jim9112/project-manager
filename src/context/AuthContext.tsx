@@ -2,11 +2,15 @@ import React, { createContext, useEffect, useState } from 'react';
 import { auth, firestore } from '../firebaseIndex';
 const AuthContext = createContext({});
 
-const AuthContextProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+interface AuthInterface {
+  uid: string;
+}
+
+const AuthContextProvider = ({ children }: any) => {
+  const [user, setUser] = useState<AuthInterface | null>(null);
 
   useEffect(() => {
-    auth.onAuthStateChanged((userAuth) => {
+    auth.onAuthStateChanged((userAuth: any) => {
       setUser(userAuth);
     });
   }, []);
@@ -19,11 +23,7 @@ const AuthContextProvider = ({ children }) => {
         if (doc.exists) {
           console.log('its there');
         } else {
-          firestore
-            .collection('users')
-            .doc(user.uid)
-            .set({})
-            .then(console.log('collection added'));
+          firestore.collection('users').doc(user.uid).set({});
         }
       });
   }
