@@ -12,16 +12,13 @@ const ProtectedRoute: React.FC<Props> = ({
   user,
   ...rest
 }) => {
-  console.log('Protected route', user);
   return (
     <Route
       {...rest}
       render={(props) => {
         if (user) {
-          console.log('user verified');
           return <Component {...props} />;
         } else {
-          console.log('user not verified', user);
           return <Redirect to="/" />;
         }
       }}

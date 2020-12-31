@@ -17,7 +17,12 @@ function App() {
           <Switch>
             <Route path="/" exact component={SignIn} />
             <Route path="/signup" exact component={SignUp} />
-            <Route path="/today" exact component={TodayPage} />
+            <ProtectedRoute
+              path="/today"
+              exact
+              component={TodayPage}
+              user={user}
+            />
             <ProtectedRoute path="/home" exact component={Home} user={user} />
           </Switch>
         </UserContextProvider>
