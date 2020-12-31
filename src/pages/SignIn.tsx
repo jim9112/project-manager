@@ -43,6 +43,11 @@ const SignUp: React.FC<Props> = ({ history }) => {
     console.log('Submitted');
   };
 
+  const handleClick = () => {
+    handleSignIn(signInWithGithub);
+    // history.push('/home');
+  };
+
   return (
     <div className={classes.root}>
       <Grid container alignContent="center" justify="center" component="div">
@@ -62,7 +67,7 @@ const SignUp: React.FC<Props> = ({ history }) => {
               type="button"
               color="secondary"
               fullWidth
-              onClick={() => handleSignIn(signInWithGithub)}>
+              onClick={handleClick}>
               Sign in with GitHub
             </Button>
             <Typography variant="body1">Dont have an account yet?</Typography>{' '}

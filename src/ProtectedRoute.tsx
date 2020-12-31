@@ -1,26 +1,28 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import AuthContext from './context/UserContext';
 
 interface Props {
-  component: React.ComponentType;
+  // component: React.ComponentType;
+  component: any;
+  user: {};
 }
 
-const ProtectedRoute: React.FC<Props> = ({ component: Component, ...rest }) => {
-  const { user }: any = useContext(AuthContext);
-
+const ProtectedRoute: React.FC<Props> = ({
+  component: Component,
+  user,
+  ...rest
+}) => {
+  console.log('Protected route', user);
   return (
     <Route
       {...rest}
       render={(props) => {
         if (user) {
-          console.log(user);
-          return <Component />;
+          console.log('user verified');
+          return <Component {...props} />;
         } else {
-          console.log(user);
-          return (
-            <Redirect to={{ pathname: '/', state: { from: props.location } }} />
-          );
+          console.log('user not verified', user);
+          return <Redirect to="/" />;
         }
       }}
     />
