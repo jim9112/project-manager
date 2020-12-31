@@ -45,7 +45,6 @@ const SignUp: React.FC<Props> = ({ history }) => {
 
   const handleClick = () => {
     handleSignIn(signInWithGithub);
-    // history.push('/home');
   };
 
   return (

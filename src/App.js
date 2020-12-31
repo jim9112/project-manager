@@ -5,7 +5,7 @@ import Home from './pages/Home';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import ProtectedRoute from './ProtectedRoute';
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import AuthContext from './context/AuthContext';
 function App() {
   const { user } = useContext(AuthContext);

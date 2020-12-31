@@ -1,13 +1,12 @@
 import { Fab, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
-import { useContext, useEffect, useState } from 'react';
+import { useState } from 'react';
 import AppBar from '../components/AppBar';
 import ProjectCard from '../components/ProjectCard';
 import DialogContainer from '../containers/DialogContainer';
 import NewProjectForm from '../components/NewProjectForm';
 import useGetAndDisplayProjects from '../utils/useGetAndDisplayProjects';
-import AuthContext from '../context/AuthContext';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,8 +27,6 @@ const Home: React.FC<Props> = ({ history }) => {
   const classes = useStyles();
   const { projects, loading } = useGetAndDisplayProjects();
   const [open, setOpen] = useState(false);
-
-  const { user }: any = useContext(AuthContext);
 
   return (
     <>
