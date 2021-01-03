@@ -4,6 +4,7 @@ import { UserContextProvider } from './context/UserContext';
 import Home from './pages/Home';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
+import NotFound from './pages/NotFound';
 import ProtectedRoute from './ProtectedRoute';
 import { useContext } from 'react';
 import AuthContext from './context/AuthContext';
@@ -24,6 +25,7 @@ function App() {
               user={user}
             />
             <ProtectedRoute path="/home" exact component={Home} user={user} />
+            <Route path="*" component={NotFound} />
           </Switch>
         </UserContextProvider>
       </BrowserRouter>
