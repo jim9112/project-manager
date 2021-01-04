@@ -15,10 +15,14 @@ import { useContext, useEffect } from 'react';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    height: '100vh',
   },
   paper: {
     maxWidth: 500,
     textAlign: 'center',
+  },
+  container: {
+    height: '500px',
   },
   form: {
     padding: '1rem',
@@ -49,7 +53,12 @@ const SignUp: React.FC<Props> = ({ history }) => {
 
   return (
     <div className={classes.root}>
-      <Grid container alignContent="center" justify="center" component="div">
+      <Grid
+        className={classes.container}
+        container
+        alignContent="center"
+        justify="center"
+        component="div">
         <Grid item xs={12} sm={8} md={4}>
           <Paper className={classes.paper}>
             <Typography variant="h4"> Sign In </Typography>
@@ -65,7 +74,6 @@ const SignUp: React.FC<Props> = ({ history }) => {
               variant="contained"
               type="button"
               color="secondary"
-              fullWidth
               onClick={handleClick}>
               Sign in with GitHub
             </Button>
