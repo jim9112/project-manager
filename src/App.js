@@ -1,13 +1,14 @@
-import TodayPage from './pages/TodayPage';
+import { useContext } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { UserContextProvider } from './context/UserContext';
+import AuthContext from './context/AuthContext';
+import TodayPage from './pages/TodayPage';
 import Home from './pages/Home';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import NotFound from './pages/NotFound';
 import ProtectedRoute from './ProtectedRoute';
-import { useContext } from 'react';
-import AuthContext from './context/AuthContext';
+
 function App() {
   const { user } = useContext(AuthContext);
 
