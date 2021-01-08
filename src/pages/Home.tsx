@@ -66,6 +66,7 @@ const Home: React.FC<Props> = ({ history }) => {
         open={open}
         setOpen={setOpen}
         title="New Project"
+        type="New"
         NewComponentForm={NewProjectForm}
       />
     </>

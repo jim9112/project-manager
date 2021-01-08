@@ -15,6 +15,8 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import ConfirmationAlert from './ConfirmationAlert';
 import useArchiveProject from '../utils/useArchiveProject';
+import DialogContainer from '../containers/DialogContainer';
+import NewProjectForm from './NewProjectForm';
 
 interface Props {
   name: string;
@@ -29,6 +31,7 @@ interface Props {
 const ProjectCard: React.FC<Props> = ({ name, desc, projKey, history, id }) => {
   const { setCurrentProject }: any = useContext(UserContext);
   const [open, setOpen] = useState<boolean>(false);
+  const [editOpen, setEditOpen] = useState<boolean>(false);
   const archivePropject = useArchiveProject();
   const onClick = () => {
     setCurrentProject(projKey);
@@ -45,7 +48,7 @@ const ProjectCard: React.FC<Props> = ({ name, desc, projKey, history, id }) => {
               <IconButton color="secondary" onClick={() => setOpen(true)}>
                 <DeleteIcon />
               </IconButton>
-              <IconButton color="secondary" onClick={() => console.log('edit')}>
+              <IconButton color="secondary" onClick={() => setEditOpen(true)}>
                 <EditIcon />
               </IconButton>
             </div>
@@ -68,6 +71,18 @@ const ProjectCard: React.FC<Props> = ({ name, desc, projKey, history, id }) => {
         message={`Do you want to archive the project: ${name}`}
         action={archivePropject}
         param1={id}
+      />
+      <DialogContainer
+        open={editOpen}
+        setOpen={setEditOpen}
+        title="Edit Project"
+        type={'Edit'}
+        currentValues={{
+          name: name,
+          desc: desc,
+        }}
+        id={id}
+        NewComponentForm={NewProjectForm}
       />
     </Grid>
   );
