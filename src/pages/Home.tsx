@@ -35,16 +35,19 @@ const Home: React.FC<Props> = ({ history }) => {
         <Grid item xs={12}>
           <Grid container justify="center" spacing={2}>
             {!loading ? (
-              projects.map((project) => (
-                <ProjectCard
-                  key={project.id}
-                  name={project.name}
-                  desc={project.desc}
-                  projKey={project.id}
-                  history={history}
-                  id={project.id}
-                />
-              ))
+              projects.map((project) => {
+                if (!project.archived)
+                  return (
+                    <ProjectCard
+                      key={project.id}
+                      name={project.name}
+                      desc={project.desc}
+                      projKey={project.id}
+                      history={history}
+                      id={project.id}
+                    />
+                  );
+              })
             ) : (
               <h1>Loading...</h1>
             )}
