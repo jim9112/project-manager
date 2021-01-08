@@ -42,6 +42,7 @@ const Home: React.FC<Props> = ({ history }) => {
                   desc={project.desc}
                   projKey={project.id}
                   history={history}
+                  id={project.id}
                 />
               ))
             ) : (

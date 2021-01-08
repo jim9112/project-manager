@@ -7,21 +7,27 @@ import {
   CardHeader,
   Divider,
   Typography,
+  IconButton,
 } from '@material-ui/core';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import UserContext from '../context/UserContext';
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
+import ConfirmationAlert from './ConfirmationAlert';
 
 interface Props {
   name: string;
   desc: string;
   projKey: string;
+  id: string;
   history: {
     push: (location: string) => void;
   };
 }
 
-const ProjectCard: React.FC<Props> = ({ name, desc, projKey, history }) => {
+const ProjectCard: React.FC<Props> = ({ name, desc, projKey, history, id }) => {
   const { setCurrentProject }: any = useContext(UserContext);
+  const [open, setOpen] = useState<boolean>(false);
 
   const onClick = () => {
     setCurrentProject(projKey);
@@ -31,7 +37,19 @@ const ProjectCard: React.FC<Props> = ({ name, desc, projKey, history }) => {
   return (
     <Grid item xs={12} sm={12} md={4}>
       <Card>
-        <CardHeader title={name} />
+        <CardHeader
+          title={name}
+          action={
+            <div>
+              <IconButton color="secondary" onClick={() => setOpen(true)}>
+                <DeleteIcon />
+              </IconButton>
+              <IconButton color="secondary" onClick={() => console.log('edit')}>
+                <EditIcon />
+              </IconButton>
+            </div>
+          }
+        />
         <Divider />
         <CardContent>
           <Typography variant="body1">{desc}</Typography>
@@ -42,6 +60,15 @@ const ProjectCard: React.FC<Props> = ({ name, desc, projKey, history }) => {
           </Button>
         </CardActions>
       </Card>
+      <ConfirmationAlert
+        open={open}
+        setOpen={setOpen}
+        title={'Delete Bug?'}
+        message={`Do you want to archive the project: ${name}`}
+        action={() => console.log('project removed')}
+        param1={'Bugs'}
+        param2={id}
+      />
     </Grid>
   );
 };
