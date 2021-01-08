@@ -7,6 +7,8 @@ import {
 } from '@material-ui/core';
 import useForm from '../utils/useForm';
 import useWriteToDatabase from '../utils/useWriteToDatabase';
+import useEditProject from '../utils/useEditProject';
+
 const useStyles = makeStyles((theme) => ({
   newTextForm: {
     padding: '1rem',
@@ -36,6 +38,7 @@ const NewProjectForm: React.FC<Props> = ({
 }) => {
   const { handleInput, input, setInput } = useForm();
   const [addToCollection] = useWriteToDatabase();
+  const editProject = useEditProject();
 
   const classes = useStyles();
 
@@ -56,7 +59,7 @@ const NewProjectForm: React.FC<Props> = ({
       addToCollection(input);
       setOpen(false);
     } else if (type === 'Edit') {
-      console.log('edit projects');
+      editProject(id, input);
       setOpen(false);
     }
   };
@@ -89,7 +92,7 @@ const NewProjectForm: React.FC<Props> = ({
           Cancel
         </Button>
         <Button type="submit" color="primary">
-          Add Task
+          Save
         </Button>
       </DialogActions>
     </form>
