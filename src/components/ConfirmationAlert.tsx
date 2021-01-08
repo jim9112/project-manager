@@ -15,7 +15,7 @@ interface Props {
   setOpen: (open: boolean) => void;
   action: (param1: string, param2: string) => void;
   param1: string;
-  param2: string;
+  param2?: string;
 }
 
 const ConfirmationAlert: React.FC<Props> = ({
@@ -28,7 +28,7 @@ const ConfirmationAlert: React.FC<Props> = ({
   param2,
 }) => {
   const handleAction = () => {
-    action(param1, param2);
+    action(param1, param2 ? param2 : '');
     setOpen(false);
   };
 

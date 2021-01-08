@@ -14,6 +14,7 @@ import UserContext from '../context/UserContext';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import ConfirmationAlert from './ConfirmationAlert';
+import useArchiveProject from '../utils/useArchiveProject';
 
 interface Props {
   name: string;
@@ -28,7 +29,7 @@ interface Props {
 const ProjectCard: React.FC<Props> = ({ name, desc, projKey, history, id }) => {
   const { setCurrentProject }: any = useContext(UserContext);
   const [open, setOpen] = useState<boolean>(false);
-
+  const archivePropject = useArchiveProject();
   const onClick = () => {
     setCurrentProject(projKey);
     history.push('/today');
@@ -65,9 +66,8 @@ const ProjectCard: React.FC<Props> = ({ name, desc, projKey, history, id }) => {
         setOpen={setOpen}
         title={'Delete Bug?'}
         message={`Do you want to archive the project: ${name}`}
-        action={() => console.log('project removed')}
-        param1={'Bugs'}
-        param2={id}
+        action={archivePropject}
+        param1={id}
       />
     </Grid>
   );
