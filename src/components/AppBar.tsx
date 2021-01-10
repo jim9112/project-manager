@@ -2,9 +2,7 @@ import React, { useState } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import InputBase from '@material-ui/core/InputBase';
 import { fade, makeStyles } from '@material-ui/core/styles';
-import SearchIcon from '@material-ui/icons/Search';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -115,7 +113,7 @@ const SearchAppBar: React.FC<Props> = ({ history }) => {
             </MenuItem>
           </Menu>
           <Typography className={classes.title} variant="h6" noWrap>
-            Find Clever Name
+            DevProjectPlanner
           </Typography>
         </Toolbar>
       </AppBar>

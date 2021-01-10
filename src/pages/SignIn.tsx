@@ -1,12 +1,4 @@
-import {
-  Button,
-  Typography,
-  Grid,
-  Paper,
-  TextField,
-  makeStyles,
-} from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import { Button, Typography, Grid, Paper, makeStyles } from '@material-ui/core';
 import { signInWithGithub } from '../firebaseIndex';
 import useSignIn from '../utils/useSignIn';
 import AuthContext from '../context/AuthContext';
@@ -19,13 +11,12 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     maxWidth: 500,
+    minHeight: 200,
     textAlign: 'center',
+    padding: '1rem',
   },
   container: {
     height: '500px',
-  },
-  form: {
-    padding: '1rem',
   },
 }));
 
@@ -33,7 +24,7 @@ interface Props {
   history: { push: (location: string) => void };
 }
 
-const SignUp: React.FC<Props> = ({ history }) => {
+const SignIn: React.FC<Props> = ({ history }) => {
   const classes = useStyles();
   const { user }: any = useContext(AuthContext);
   const [handleSignIn] = useSignIn();
@@ -41,11 +32,6 @@ const SignUp: React.FC<Props> = ({ history }) => {
   useEffect(() => {
     if (user) history.push('/home');
   }, [user]);
-
-  const onSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('Submitted');
-  };
 
   const handleClick = () => {
     handleSignIn(signInWithGithub);
@@ -61,15 +47,16 @@ const SignUp: React.FC<Props> = ({ history }) => {
         component="div">
         <Grid item xs={12} sm={8} md={4}>
           <Paper className={classes.paper}>
-            <Typography variant="h4"> Sign In </Typography>
-            <form className={classes.form} onSubmit={onSubmit}>
-              <TextField id="email" label="Email" required fullWidth />
-              <TextField id="password" label="Password" required fullWidth />
-              <Button type="submit" color="primary">
-                Submit
-              </Button>
-            </form>
-            <Typography variant="body1">or</Typography>
+            <Typography variant="h4" gutterBottom>
+              {' '}
+              DevProjectPlanner{' '}
+            </Typography>
+            <Typography variant="body2" paragraph>
+              {' '}
+              An application thats helps you to manage your personal projects.
+              Track tasks, document bugs, and take quick notes. To get started
+              log in with your GitHub credentials below.{' '}
+            </Typography>
             <Button
               variant="contained"
               type="button"
@@ -77,8 +64,6 @@ const SignUp: React.FC<Props> = ({ history }) => {
               onClick={handleClick}>
               Sign in with GitHub
             </Button>
-            <Typography variant="body1">Dont have an account yet?</Typography>{' '}
-            <Link to="/signup">Sign Up</Link>
           </Paper>
         </Grid>
       </Grid>
@@ -86,4 +71,4 @@ const SignUp: React.FC<Props> = ({ history }) => {
   );
 };
 
-export default SignUp;
+export default SignIn;
