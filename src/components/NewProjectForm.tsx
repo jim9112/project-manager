@@ -22,12 +22,14 @@ interface Props {
   currentValues: {
     desc: string;
     name: string;
+    repo: string;
   };
 }
 
 interface Input {
   name?: string;
   desc?: string;
+  repo?: string;
 }
 
 const NewProjectForm: React.FC<Props> = ({
@@ -42,7 +44,7 @@ const NewProjectForm: React.FC<Props> = ({
 
   const classes = useStyles();
 
-  const { name, desc }: Input = input;
+  const { name, desc, repo }: Input = input;
 
   // set standard data for not that doesnt come from form input || add current value on edit
   useEffect(() => {
@@ -84,6 +86,15 @@ const NewProjectForm: React.FC<Props> = ({
         label="Project Description"
         type="text"
         value={desc}
+        fullWidth
+        onChange={handleInput}
+      />
+      <TextField
+        margin="dense"
+        id="repo"
+        label="Repo Link"
+        type="text"
+        value={repo}
         fullWidth
         onChange={handleInput}
       />
