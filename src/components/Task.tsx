@@ -46,7 +46,7 @@ const Task: React.FC<Props> = ({ task }) => {
       .collection('users')
       .doc(user.uid)
       .collection('Projects')
-      .doc(currentProject)
+      .doc(currentProject.projKey)
       .collection('Tasks')
       .doc(task.id);
 

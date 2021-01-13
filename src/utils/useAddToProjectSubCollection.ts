@@ -12,7 +12,7 @@ const useAddToProjectSubCollection = (type: 'Bugs' | 'Tasks' | 'Notes') => {
       .collection('users')
       .doc(user.uid)
       .collection('Projects')
-      .doc(currentProject)
+      .doc(currentProject.projKey)
       .collection(type)
       .add(data)
       .catch((error) => console.error(error));

@@ -42,6 +42,7 @@ const Home: React.FC<Props> = ({ history }) => {
                       key={project.id}
                       name={project.name}
                       desc={project.desc}
+                      repo={project.repo || null}
                       projKey={project.id}
                       history={history}
                       id={project.id}

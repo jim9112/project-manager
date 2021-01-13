@@ -21,6 +21,7 @@ import NewProjectForm from './NewProjectForm';
 interface Props {
   name: string;
   desc: string;
+  repo?: string;
   projKey: string;
   id: string;
   history: {
@@ -28,13 +29,20 @@ interface Props {
   };
 }
 
-const ProjectCard: React.FC<Props> = ({ name, desc, projKey, history, id }) => {
+const ProjectCard: React.FC<Props> = ({
+  name,
+  desc,
+  repo,
+  projKey,
+  history,
+  id,
+}) => {
   const { setCurrentProject }: any = useContext(UserContext);
   const [open, setOpen] = useState<boolean>(false);
   const [editOpen, setEditOpen] = useState<boolean>(false);
   const archivePropject = useArchiveProject();
   const onClick = () => {
-    setCurrentProject(projKey);
+    setCurrentProject({ projKey: projKey, repo: repo });
     history.push('/today');
   };
 

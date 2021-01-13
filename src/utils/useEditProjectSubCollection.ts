@@ -11,7 +11,7 @@ const useEditProjectSubCollection = (type: string) => {
     .collection('users')
     .doc(user.uid)
     .collection('Projects')
-    .doc(currentProject)
+    .doc(currentProject.projKey)
     .collection(type);
   const editCollection = (id: string, data: {}) => {
     dbLocation

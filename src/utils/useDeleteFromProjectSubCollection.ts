@@ -12,7 +12,7 @@ const useDeleteFromProjectSubCollection = () => {
       .collection('users')
       .doc(user.uid)
       .collection('Projects')
-      .doc(currentProject)
+      .doc(currentProject.projKey)
       .collection(type)
       .doc(item)
       .delete()

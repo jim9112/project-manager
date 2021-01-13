@@ -16,7 +16,7 @@ function useGetProjectSubCollection(type: string) {
         .collection('users')
         .doc(user.uid)
         .collection('Projects')
-        .doc(currentProject)
+        .doc(currentProject.projKey)
         .collection(type)
         .onSnapshot((querySnapshot) => {
           const data = querySnapshot.docs.map((doc) => {
