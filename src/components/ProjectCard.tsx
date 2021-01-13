@@ -42,7 +42,7 @@ const ProjectCard: React.FC<Props> = ({
   const [editOpen, setEditOpen] = useState<boolean>(false);
   const archivePropject = useArchiveProject();
   const onClick = () => {
-    setCurrentProject({ projKey: projKey, repo: repo });
+    setCurrentProject({ projKey: projKey, repo: repo, name: name });
     history.push('/today');
   };
 
