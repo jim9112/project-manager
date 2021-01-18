@@ -2,7 +2,7 @@ import { Paper, makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    height: 'calc(100vh - 120px )',
+    height: 'calc(100vh - 240px )',
     width: '100%',
     paddingBottom: '1rem',
   },
