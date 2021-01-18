@@ -88,6 +88,7 @@ const ProjectCard: React.FC<Props> = ({
         currentValues={{
           name: name,
           desc: desc,
+          repo: repo,
         }}
         id={id}
         NewComponentForm={NewProjectForm}
