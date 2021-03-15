@@ -20,8 +20,7 @@ function App() {
             <Route path="/" exact component={SignIn} />
             <Route path="/signup" exact component={SignUp} />
             <ProtectedRoute
-              path="/today"
-              exact
+              path="/projects/:projectKey"
               component={TodayPage}
               user={user}
             />

@@ -9,10 +9,12 @@ import ContentCard from '../containers/ContentCard';
 import CardHeader from './CardHeader';
 import CardFooter from './CardFooter';
 import useGetProjectSubCollection from '../utils/useGetProjectSubCollection';
+import { useParams } from 'react-router';
 
 const BugsCard: React.FC = () => {
   const [open, setOpen] = useState<boolean>(false);
-  const { output, loading } = useGetProjectSubCollection('Bugs');
+  const { projectKey } = useParams<{ projectKey: string }>();
+  const { output, loading } = useGetProjectSubCollection('Bugs', projectKey);
 
   return (
     <ContentCard>

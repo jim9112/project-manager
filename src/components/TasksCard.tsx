@@ -10,6 +10,7 @@ import Spinner from './Spinner';
 import ContentCard from '../containers/ContentCard';
 import CardHeader from './CardHeader';
 import CardFooter from './CardFooter';
+import { useParams } from 'react-router';
 
 interface X {
   checked: any;
@@ -24,7 +25,9 @@ interface ITask {
 
 const TasksCard = () => {
   const [open, setOpen] = useState<boolean>(false);
-  const { output, loading } = useGetProjectSubCollection('Tasks');
+  const { projectKey } = useParams<{ projectKey: string }>();
+  console.log(`The key is ${projectKey}`);
+  const { output, loading } = useGetProjectSubCollection('Tasks', projectKey);
 
   return (
     <ContentCard>

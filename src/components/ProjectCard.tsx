@@ -43,7 +43,7 @@ const ProjectCard: React.FC<Props> = ({
   const archivePropject = useArchiveProject();
   const onClick = () => {
     setCurrentProject({ projKey: projKey, repo: repo, name: name });
-    history.push('/today');
+    history.push(`/projects/${projKey}`);
   };
 
   return (

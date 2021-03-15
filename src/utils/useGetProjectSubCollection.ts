@@ -3,7 +3,7 @@ import AuthContext from '../context/AuthContext';
 import UserContext from '../context/UserContext';
 import { firestore } from '../firebaseIndex';
 
-function useGetProjectSubCollection(type: string) {
+function useGetProjectSubCollection(type: string, projectKey: string) {
   const [output, setOutput] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const { user }: any = useContext(AuthContext);
@@ -16,7 +16,7 @@ function useGetProjectSubCollection(type: string) {
         .collection('users')
         .doc(user.uid)
         .collection('Projects')
-        .doc(currentProject.projKey)
+        .doc(projectKey)
         .collection(type)
         .onSnapshot((querySnapshot) => {
           const data = querySnapshot.docs.map((doc) => {
