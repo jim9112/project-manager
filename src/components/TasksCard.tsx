@@ -26,7 +26,6 @@ interface ITask {
 const TasksCard = () => {
   const [open, setOpen] = useState<boolean>(false);
   const { projectKey } = useParams<{ projectKey: string }>();
-  console.log(`The key is ${projectKey}`);
   const { output, loading } = useGetProjectSubCollection('Tasks', projectKey);
 
   return (
